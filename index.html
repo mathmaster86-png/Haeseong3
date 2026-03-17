@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해성중 3학년부 대시보드</title>
+    <style>
+        :root {
+            var(--bg-color): #121212; 
+            --card-bg: #1e1e1e; 
+            --text-main: #ffffff;
+            --text-sub: #b3b3b3;
+            --accent-mint: #00D2B4; 
+            --accent-gold: #D1B280; 
+            --accent-red: #FF6B6B;
+        }
+
+        body { margin: 0; padding: 20px; background-color: #121212; color: var(--text-main); font-family: 'Pretendard', 'Malgun Gothic', sans-serif; height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center; }
+
+        .main-wrapper { display: flex; gap: 20px; width: 100%; max-width: 1400px; height: 90vh; }
+        .sidebar { width: 220px; background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.05); overflow-y: auto; }
+        .sidebar-title { font-size: 1.1rem; font-weight: bold; color: var(--accent-mint); margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; flex-shrink: 0;}
+        .shortcut-btn { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; text-decoration: none; color: var(--text-main); font-weight: bold; font-size: 0.95rem; transition: all 0.2s ease; flex-shrink: 0;}
+        .shortcut-btn:hover { background: rgba(0, 210, 180, 0.15); transform: translateY(-2px); color: var(--accent-mint); }
+        .shortcut-icon { font-size: 1.1rem; }
+
+        .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.5fr 6.5fr; gap: 20px; flex-grow: 1; }
+        
+        .card { background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .card-header { font-size: 1.2rem; font-weight: bold; color: var(--accent-mint); margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+
+        .card-1 { grid-area: 1 / 1 / 2 / 2; } 
+        .card-4 { grid-area: 1 / 2 / 2 / 3; } 
+        .card-3 { grid-area: 2 / 1 / 3 / 2; } 
+        .card-2 { grid-area: 2 / 2 / 3 / 3; } 
+
+        .date-display { font-size: 1.1rem; color: var(--text-sub); text-align: center; margin-top: 0px; }
+        .time-display { font-size: 3.2rem; font-weight: bold; text-align: center; color: var(--accent-gold); margin-top: 0px; letter-spacing: 2px; }
+        .weather-display { font-size: 1rem; text-align: center; color: #fff; margin-top: 5px; margin-bottom: 5px; font-weight: 500; }
+        .lunch-box { margin-top: auto; background: rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .lunch-title { font-size: 0.9rem; color: var(--accent-mint); margin-bottom: 5px; font-weight: bold; }
+        .lunch-menu { font-size: 0.95rem; line-height: 1.4; word-break: keep-all; }
+
+        .period-notifier { font-size: 1.2rem; font-weight: bold; text-align: center; padding: 12px; background: rgba(209, 178, 128, 0.15); color: var(--accent-gold); border-radius: 8px; margin-bottom: 15px; border: 1px dashed rgba(209, 178, 128, 0.3); }
+        .dday-input-group { display: flex; gap: 8px; margin-bottom: 15px; }
+        .dday-input-group input { background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 8px; border-radius: 6px; font-family: inherit; }
+        .dday-input-group input:focus { border-color: var(--accent-mint); outline: none; }
+        #ddayName { flex-grow: 1; }
+        #ddayDate { color-scheme: dark; }
+        .dday-input-group button { background: var(--accent-mint); color: #000; border: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
+        .dday-input-group button:hover { background: #1de8cb; }
+        #ddayList { overflow-y: auto; flex-grow: 1; padding-right: 5px; }
+        .d-day-box { background: rgba(0, 0, 0, 0.2); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 1.05rem; border-left: 3px solid var(--accent-mint); }
+        .accent-text { color: var(--accent-red); font-weight: bold; margin-right: 10px; }
+        
+        #noticeBoard { flex-grow: 1; overflow-y: auto; padding-right: 5px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+        .section-title { font-size: 0.95rem; font-weight: bold; color: var(--accent-gold); margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+        .section-divider { border-top: 1px dashed rgba(255,255,255,0.1); margin: 15px 0 10px 0; }
+        
+        .notice-item.today { background: rgba(0, 210, 180, 0.1); border: 1px solid rgba(0, 210, 180, 0.3); padding: 16px; border-radius: 10px; position: relative; transition: all 0.3s ease; }
+        .notice-item.today .notice-time { font-size: 0.85rem; color: #888; margin-bottom: 8px; display: block; font-weight: bold; }
+        .notice-item.today .notice-text { font-size: 1.15rem; line-height: 1.6; color: #fff; font-weight: 500; padding-right: 40px; }
+        
+        .notice-item.past { background: rgba(0, 0, 0, 0.15); padding: 12px; border-radius: 8px; position: relative; transition: all 0.3s ease; }
+        .notice-item.past .notice-time { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 4px; display: block; }
+        .notice-item.past .notice-text { font-size: 0.95rem; line-height: 1.4; color: #ccc; padding-right: 40px; }
+
+        .notice-actions { position: absolute; top: 12px; right: 10px; display: flex; gap: 5px; }
+        .action-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; opacity: 0.5; transition: all 0.2s; }
+        .action-btn:hover { opacity: 1; transform: scale(1.1); }
+        
+        .notice-input-group { display: flex; gap: 8px; align-items: flex-end; }
+        .notice-input-group textarea { 
+            flex-grow: 1; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 10px; border-radius: 6px; 
+            font-family: inherit; outline: none; resize: vertical; min-height: 44px; box-sizing: border-box; line-height: 1.4;
+        }
+        .notice-input-group textarea:focus { border-color: var(--accent-mint); }
+        .notice-input-group button { background: var(--accent-mint); color: #000; border: none; padding: 12px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; height: 44px; transition: all 0.2s;}
+        .notice-input-group button:hover { background: #1de8cb; }
+        .loading-text { text-align: center; color: var(--text-sub); margin-top: 20px; }
+
+        .sports-item { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid var(--accent-gold);}
+        .team-name { font-weight: bold; font-size: 1.05rem; }
+        .match-info { color: var(--text-sub); font-size: 0.9rem; text-align: right; line-height: 1.4;}
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+
+        /* 수정 팝업 스타일 */
+        #editModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: var(--card-bg); width: 450px; padding: 25px; border-radius: 12px;
+            display: flex; flex-direction: column; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 1px solid var(--accent-mint);
+        }
+        .modal-title { margin: 0; color: var(--accent-mint); font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center;}
+        .modal-hint { font-size: 0.8rem; color: var(--text-sub); font-weight: normal; }
+        .modal-content textarea {
+            width: 100%; height: 150px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; padding: 12px; border-radius: 6px; font-family: inherit; font-size: 1rem;
+            resize: vertical; outline: none; box-sizing: border-box; line-height: 1.5;
+        }
+        .modal-content textarea:focus { border-color: var(--accent-mint); }
+        .modal-buttons { display: flex; justify-content: flex-end; gap: 10px; }
+        .modal-buttons button { padding: 10px 18px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; }
+        .btn-cancel { background: rgba(255,255,255,0.1); color: #fff; }
+        .btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .btn-save { background: var(--accent-mint); color: #000; }
+        .btn-save:hover { background: #1de8cb; }
+    </style>
+</head>
+<body>
+
+    <div id="editModal">
+        <div class="modal-content">
+            <h3 class="modal-title">
+                <span>✏️ 전달사항 수정</span>
+                <span class="modal-hint">(Enter키로 줄바꿈)</span>
+            </h3>
+            <textarea id="editModalInput" placeholder="내용을 수정하세요..."></textarea>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeEditModal()">취소</button>
+                <button class="btn-save" id="saveEditBtn" onclick="saveEdit()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-title">⭐ 바로가기</div>
+            <a href="https://gne.eduptl.kr/bpm_lgn_lg00_001.do?noEpSession" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🏢</span> 업무포털 (경남)</a>
+            <a href="https://newtab.itt.link/v3/index.do" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🏫</span> 아이톡톡</a>
+            <a href="https://www.naver.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🟩</span> 네이버</a>
+            <a href="https://search.naver.com/search.naver?query=계산기" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🧮</span> 네이버 계산기</a>
+            <a href="https://www.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🔍</span> 구글</a>
+            <a href="https://gemini.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">✨</span> 제미나이</a>
+            <a href="https://drive.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">☁️</span> 구글 드라이브</a>
+            <a href="https://docs.google.com/spreadsheets/" target="_blank" class="shortcut-btn"><span class="shortcut-icon">📊</span> 구글 시트</a>
+            <a href="https://www.miricanvas.com/" target="_blank" class="shortcut-btn" style="margin-bottom: auto;"><span class="shortcut-icon">🎨</span> 미리캔버스</a>
+        </div>
+
+        <div class="dashboard-container">
+            
+            <div class="card card-1">
+                <div class="card-header">🕒 시간 · 날씨 · 급식</div>
+                <div class="date-display" id="currentDate">0000년 00월 00일 (요일)</div>
+                <div class="time-display" id="currentTime">00:00:00</div>
+                <div class="weather-display" id="weatherInfo">☁️ 날씨 정보를 불러오는 중...</div>
+                <div class="lunch-box">
+                    <div class="lunch-title">🍽️ 해성중학교 오늘의 급식</div>
+                    <div id="lunchMenu" class="lunch-menu">나이스(NEIS) 데이터를 불러오는 중...</div>
+                </div>
+            </div>
+
+            <div class="card card-4">
+                <div class="card-header" style="color: var(--accent-gold);">🏆 스포츠 경기 일정</div>
+                <div class="sports-item">
+                    <div class="team-name">⚾ NC 다이노스</div>
+                    <div class="match-info">정규시즌 개막: 3월 28일 (토) 14:00<br>vs 두산 (창원NC파크)</div>
+                </div>
+                <div class="sports-item">
+                    <div class="team-name">🏀 창원 LG 세이커스</div>
+                    <div class="match-info">다음 경기: 3월 26일 (목) 19:00<br>vs 한국가스공사 (대구체육관)</div>
+                </div>
+            </div>
+
+            <div class="card card-3">
+                <div class="card-header" style="color: var(--accent-mint);">
+                    📢 3학년부 전달사항 
+                    <button onclick="fetchNotices()" style="background:none; border:none; color:var(--accent-mint); cursor:pointer; font-size:1rem; transition: transform 0.2s;">🔄 새로고침</button>
+                </div>
+                <div id="noticeBoard">
+                    <div class="loading-text">데이터를 불러오는 중입니다...</div>
+                </div>
+                <div class="notice-input-group">
+                    <textarea id="noticeInput" placeholder="새로운 전달사항을 입력하세요&#13;&#10;(Shift+Enter: 줄바꿈 / Enter: 전송)" onkeydown="checkEnter(event)"></textarea>
+                    <button onclick="postNotice()" id="postBtn">등록</button>
+                </div>
+            </div>
+
+            <div class="card card-2">
+                <div class="card-header" style="color: var(--accent-gold);">🏫 3학년부 주요 업무 D-Day</div>
+                <div class="period-notifier" id="periodInfo">현재 일과 준비 시간입니다.</div>
+                <div class="dday-input-group">
+                    <input type="text" id="ddayName" placeholder="새 일정 (예: 전학공1)">
+                    <input type="date" id="ddayDate">
+                    <button id="ddayAddBtn" onclick="addDday()">추가</button>
+                </div>
+                <div id="ddayList">
+                    <div class="loading-text">디데이 불러오는 중...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT1sm-0Qy8PzqNZRY_b1zaMX8Fv2oam4PpteahW62b05gtSSwLrkoyEO-1bhAEcnwyIA/exec"; 
+
+        // --- 시계, 급식, 날씨 함수 ---
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const date = String(now.getDate()).padStart(2, '0');
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            const day = days[now.getDay()];
+            document.getElementById('currentDate').textContent = `${year}년 ${String(month).padStart(2, '0')}월 ${date}일 (${day})`;
+
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const currentTimeStr = hours + minutes;
+            let periodText = "현재 수업 외 시간입니다.";
+            if (currentTimeStr >= "0850" && currentTimeStr < "0900") periodText = "조회 시간입니다.";
+            else if (currentTimeStr >= "0900" && currentTimeStr < "0945") periodText = "현재 1교시 수업 중입니다.";
+            else if (currentTimeStr >= "0955" && currentTimeStr < "1040") periodText = "현재 2교시 수업 중입니다.";
+            else if (currentTimeStr >= "1050" && currentTimeStr < "1135") periodText = "현재 3교시 수업 중입니다.";
+            else if (currentTimeStr >= "1145" && currentTimeStr < "1230") periodText = "현재 4교시 수업 중입니다.";
+            else if (currentTimeStr >= "1230" && currentTimeStr < "1330") periodText = "점심 시간입니다. 🍱";
+            else if (currentTimeStr >= "1330" && currentTimeStr < "1415") periodText = "현재 5교시 수업 중입니다.";
+            else if (currentTimeStr >= "1425" && currentTimeStr < "1510") periodText = "현재 6교시 수업 중입니다.";
+            document.getElementById('periodInfo').textContent = periodText;
+        }
+        updateTime(); setInterval(updateTime, 1000);
+
+        async function fetchWeather() {
+            try {
+                const lat = 34.8806; const lon = 128.6211;
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const currentTemp = Math.round(data.current.temperature_2m);
+                const weatherCode = data.current.weather_code;
+                const maxTemp = Math.round(data.daily.temperature_2m_max[0]);
+                const minTemp = Math.round(data.daily.temperature_2m_min[0]);
+                let weatherIcon = "☁️"; let weatherDesc = "흐림";
+                if (weatherCode === 0) { weatherIcon = "☀️"; weatherDesc = "맑음"; }
+                else if (weatherCode === 1 || weatherCode === 2) { weatherIcon = "⛅"; weatherDesc = "구름조금"; }
+                else if (weatherCode === 3) { weatherIcon = "☁️"; weatherDesc = "흐림"; }
+                else if (weatherCode >= 45 && weatherCode <= 48) { weatherIcon = "🌫️"; weatherDesc = "안개"; }
+                else if (weatherCode >= 51 && weatherCode <= 67) { weatherIcon = "☔"; weatherDesc = "비"; }
+                else if (weatherCode >= 71 && weatherCode <= 77) { weatherIcon = "❄️"; weatherDesc = "눈"; }
+                else if (weatherCode >= 80 && weatherCode <= 82) { weatherIcon = "☂️"; weatherDesc = "소나기"; }
+                else if (weatherCode >= 85 && weatherCode <= 86) { weatherIcon = "🌨️"; weatherDesc = "눈보라"; }
+                else if (weatherCode >= 95 && weatherCode <= 99) { weatherIcon = "⛈️"; weatherDesc = "천둥번개"; }
+                const weatherStr = `거제 날씨: ${weatherIcon} ${weatherDesc} ${currentTemp}°C <span style="font-size:0.85rem; color:var(--text-sub);">(최고 ${maxTemp}° / 최저 ${minTemp}°)</span>`;
+                document.getElementById('weatherInfo').innerHTML = weatherStr;
+            } catch (error) { document.getElementById('weatherInfo').textContent = "날씨 정보를 불러올 수 없습니다."; }
+        }
+        fetchWeather(); setInterval(fetchWeather, 30 * 60 * 1000);
+
+        async function fetchLunchMenu() {
+            try {
+                const schoolRes = await fetch('https://open.neis.go.kr/hub/schoolInfo?Type=json&ATPT_OFCDC_SC_CODE=S10&SCHUL_NM=해성중학교');
+                const schoolData = await schoolRes.json();
+                const geojeSchool = schoolData.schoolInfo[1].row.find(s => s.ORG_RDNMA.includes('거제'));
+                if(!geojeSchool) return;
+                const now = new Date();
+                const todayStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+                const mealRes = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=S10&SD_SCHUL_CODE=${geojeSchool.SD_SCHUL_CODE}&MLSV_YMD=${todayStr}`);
+                const mealData = await mealRes.json();
+                if (mealData.mealServiceDietInfo) {
+                    let cleanMenu = mealData.mealServiceDietInfo[1].row[0].DDISH_NM
+                        .replace(/<br\/>/g, ', ').replace(/[0-9.*]/g, '').replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').replace(/,\s*,/g, ',').trim().replace(/^,|,$/g, '').trim();
+                    document.getElementById('lunchMenu').textContent = cleanMenu;
+                } else { document.getElementById('lunchMenu').textContent = "오늘은 급식이 없는 날입니다."; }
+            } catch (error) { document.getElementById('lunchMenu').textContent = "급식 정보를 불러올 수 없습니다."; }
+        }
+        fetchLunchMenu();
+
+        // ==========================================
+        // ★ 1. 디데이 연동 (구글 시트 '디데이' 탭에서 가져오기)
+        // ==========================================
+        let ddayItems = [];
+        let editingDdayIndex = -1; 
+
+        async function fetchDdays() {
+            const listEl = document.getElementById('ddayList');
+            try {
+                const response = await fetch(WEB_APP_URL + "?type=dday&t=" + new Date().getTime());
+                const data = await response.json();
+                ddayItems = data;
+                renderDdays();
+            } catch (error) {
+                listEl.innerHTML = '<div class="loading-text">디데이 정보를 불러올 수 없습니다.</div>';
+            }
+        }
+
+        function renderDdays() {
+            const listEl = document.getElementById('ddayList');
+            listEl.innerHTML = ''; 
+            
+            if (ddayItems.length === 0) {
+                listEl.innerHTML = '<div style="text-align:center; color:#888; margin-top:20px;">등록된 일정이 없습니다.</div>';
+                return;
+            }
+
+            ddayItems.sort((a, b) => new Date(a['날짜']) - new Date(b['날짜']));
+            
+            ddayItems.forEach((item, index) => {
+                const targetDate = new Date(item['날짜']);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); targetDate.setHours(0, 0, 0, 0);
+                const diffDays = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24)); 
+                let ddayText = diffDays > 0 ? `D-${diffDays}` : (diffDays === 0 ? "D-Day" : `D+${Math.abs(diffDays)}`);
+                
+                const div = document.createElement('div');
+                div.className = 'd-day-box';
+                div.id = `dday-${item['ID']}`;
+                div.innerHTML = `
+                    <span>${item['일정명']} <span style="font-size:0.8rem; color:var(--text-sub);">(${item['날짜'].substring(5)})</span></span>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <span class="accent-text">${ddayText}</span>
+                        <button class="action-btn" onclick="editDday(${index})" title="수정" style="opacity:0.8;">✏️</button>
+                        <button class="action-btn" onclick="deleteDday('${item['ID']}')" title="삭제" style="opacity:0.8; color:var(--accent-red);">✕</button>
+                    </div>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        function addDday() {
+            const nameInput = document.getElementById('ddayName');
+            const dateInput = document.getElementById('ddayDate');
+            const btn = document.getElementById('ddayAddBtn');
+
+            if (!nameInput.value || !dateInput.value) return alert("일정 이름과 날짜를 모두 입력해주세요.");
+            
+            btn.textContent = "저장중...";
+            btn.disabled = true;
+
+            if (editingDdayIndex > -1) {
+                const ddayId = ddayItems[editingDdayIndex]['ID'];
+                fetch(WEB_APP_URL, {
+                    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({ action: 'update', type: 'dday', id: ddayId, name: nameInput.value, date: dateInput.value })
+                }).then(() => {
+                    resetDdayInput(); setTimeout(fetchDdays, 2500);
+                });
+            } else {
+                fetch(WEB_APP_URL, {
+                    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({ action: 'create', type: 'dday', name: nameInput.value, date: dateInput.value })
+                }).then(() => {
+                    resetDdayInput(); setTimeout(fetchDdays, 2500);
+                });
+            }
+        }
+
+        function editDday(index) {
+            document.getElementById('ddayName').value = ddayItems[index]['일정명'];
+            document.getElementById('ddayDate').value = ddayItems[index]['날짜'].substring(0, 10);
+            editingDdayIndex = index;
+            
+            const btn = document.getElementById('ddayAddBtn');
+            btn.textContent = "수정완료";
+            btn.style.backgroundColor = "var(--accent-gold)";
+            btn.style.color = "#000";
+        }
+
+        function resetDdayInput() {
+            const nameInput = document.getElementById('ddayName');
+            const dateInput = document.getElementById('ddayDate');
+            const btn = document.getElementById('ddayAddBtn');
+            nameInput.value = ''; dateInput.value = '';
+            btn.textContent = "추가";
+            btn.style.backgroundColor = "var(--accent-mint)";
+            btn.style.color = "var(--bg-color)";
+            btn.disabled = false;
+            editingDdayIndex = -1;
+        }
+
+        function deleteDday(id) { 
+            if (!confirm("이 디데이를 정말 삭제하시겠습니까?")) return;
+            const itemDiv = document.getElementById('dday-' + id);
+            if(itemDiv) itemDiv.style.display = 'none';
+
+            fetch(WEB_APP_URL, {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'delete', type: 'dday', id: id })
+            }).then(() => {
+                setTimeout(fetchDdays, 2500);
+            });
+        }
+
+
+        // ==========================================
+        // ★ 2. 전달사항 게시판 연동
+        // ==========================================
+        async function fetchNotices() {
+            const boardEl = document.getElementById('noticeBoard');
+            try {
+                const response = await fetch(WEB_APP_URL + "?t=" + new Date().getTime());
+                const data = await response.json();
+                
+                boardEl.innerHTML = '';
+                if (data.length === 0) {
+                    boardEl.innerHTML = '<div class="loading-text">등록된 전달사항이 없습니다.</div>';
+                    return;
+                }
+
+                const now = new Date();
+                const y = now.getFullYear();
+                const m = String(now.getMonth() + 1).padStart(2, '0');
+                const d = String(now.getDate()).padStart(2, '0');
+                const todayStrFormatted = `${y}-${m}-${d}`;
+
+                data.reverse(); 
+
+                let todayHtml = '<div class="section-title">✨ 오늘의 전달사항</div>';
+                let pastHtml = '<div class="section-divider"></div><div class="section-title">📅 이전 전달사항</div>';
+                let hasToday = false, hasPast = false;
+
+                data.forEach(item => {
+                    let id = item['전달ID'];
+                    let dateStr = item.날짜 ? item.날짜.substring(0, 10) : "날짜 없음";
+                    let content = String(item.내용 || "").replace(/\r\n|\r|\n/g, '<br>');
+
+                    if (dateStr === todayStrFormatted) {
+                        hasToday = true;
+                        todayHtml += `
+                            <div class="notice-item today" id="item-${id}">
+                                <span class="notice-time">오늘 등록됨</span>
+                                <div class="notice-text" id="text-${id}">${content}</div>
+                                <div class="notice-actions">
+                                    <button class="action-btn" onclick="openEditModal('${id}')" title="수정">✏️</button>
+                                    <button class="action-btn" onclick="deleteNotice('${id}')" title="삭제" style="color:var(--accent-red);">✕</button>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        hasPast = true;
+                        pastHtml += `
+                            <div class="notice-item past" id="item-${id}">
+                                <span class="notice-time">${dateStr}</span>
+                                <div class="notice-text" id="text-${id}">${content}</div>
+                                <div class="notice-actions">
+                                    <button class="action-btn" onclick="openEditModal('${id}')" title="수정">✏️</button>
+                                    <button class="action-btn" onclick="deleteNotice('${id}')" title="삭제" style="color:var(--accent-red);">✕</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                if (!hasToday) todayHtml += '<div style="color:var(--text-sub); text-align:center; padding:15px 0; font-size:0.9rem;">오늘 등록된 전달사항이 없습니다.</div>';
+                if (!hasPast) pastHtml += '<div style="color:var(--text-sub); text-align:center; padding:15px 0; font-size:0.9rem;">이전 전달사항이 없습니다.</div>';
+
+                boardEl.innerHTML = todayHtml + pastHtml;
+            } catch (error) { 
+                boardEl.innerHTML = '<div class="loading-text">데이터를 불러오지 못했습니다. 새로고침을 눌러주세요.</div>'; 
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); postNotice(); }
+        }
+
+        function postNotice() {
+            const inputEl = document.getElementById('noticeInput');
+            const btnEl = document.getElementById('postBtn');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            btnEl.textContent = "전송중..."; btnEl.disabled = true;
+
+            const tempContent = text.replace(/\r\n|\r|\n/g, '<br>');
+            const boardEl = document.getElementById('noticeBoard');
+            const todayTitle = boardEl.querySelector('.section-title');
+            if(todayTitle) {
+                todayTitle.insertAdjacentHTML('afterend', `
+                    <div class="notice-item today" style="opacity:0.6; border: 2px dashed var(--accent-mint);">
+                        <span class="notice-time">방금 전 (전송 중...)</span>
+                        <div class="notice-text">${tempContent}</div>
+                    </div>
+                `);
+            }
+
+            fetch(WEB_APP_URL, {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'create', text: text })
+            }).then(() => {
+                inputEl.value = ''; btnEl.textContent = "등록"; btnEl.disabled = false;
+                setTimeout(fetchNotices, 2500); 
+            }).catch(error => { alert("오류가 발생했습니다."); btnEl.textContent = "등록"; btnEl.disabled = false; });
+        }
+
+        let currentEditId = null;
+
+        function openEditModal(id) {
+            currentEditId = id;
+            const textDiv = document.getElementById('text-' + id);
+            const oldText = textDiv.innerHTML.replace(/<br\s*[\/]?>/gi, "\n");
+            document.getElementById('editModalInput').value = oldText;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeEditModal() { 
+            document.getElementById('editModal').style.display = 'none'; 
+            // 주의: 여기서 currentEditId를 지우지 않습니다! (버그 수정 완료)
+        }
+
+        // ★★★ 이 부분의 버그가 해결되었습니다! ★★★
+        function saveEdit() {
+            if (!currentEditId) return;
+            
+            // 번호표(ID)를 까먹기 전에 미리 안전한 곳에 저장해둡니다.
+            const targetId = currentEditId; 
+            const newText = document.getElementById('editModalInput').value.trim();
+            const textDiv = document.getElementById('text-' + targetId);
+            
+            closeEditModal(); // 팝업 닫기
+            currentEditId = null; // 이제 지워도 안전합니다.
+            
+            if (newText === "") return; 
+
+            textDiv.innerHTML = newText.replace(/\r\n|\r|\n/g, '<br>');
+            textDiv.style.opacity = '0.5';
+
+            fetch(WEB_APP_URL, {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                // 이제 구글 시트로 targetId가 정확하게 날아갑니다!
+                body: JSON.stringify({ action: 'update', id: targetId, text: newText }) 
+            }).then(() => {
+                textDiv.style.opacity = '1';
+                setTimeout(fetchNotices, 2500); 
+            }).catch(e => { alert("수정 실패"); fetchNotices(); });
+        }
+
+        function deleteNotice(id) {
+            if (!confirm("이 전달사항을 정말 삭제하시겠습니까?")) return;
+            const itemDiv = document.getElementById('item-' + id);
+            itemDiv.style.display = 'none'; 
+            fetch(WEB_APP_URL, {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'delete', id: id })
+            }).then(() => { setTimeout(fetchNotices, 2500); }).catch(e => { alert("삭제 실패"); itemDiv.style.display = 'block'; });
+        }
+
+        fetchNotices();
+        fetchDdays();
+    </script>
+</body>
+</html>
