@@ -6,7 +6,7 @@
     <title>해성중 3학년부 대시보드</title>
     <style>
         :root {
-            var(--bg-color): #121212; 
+            --bg-color: #121212; 
             --card-bg: #1e1e1e; 
             --text-main: #ffffff;
             --text-sub: #b3b3b3;
@@ -503,20 +503,17 @@
 
         function closeEditModal() { 
             document.getElementById('editModal').style.display = 'none'; 
-            // 주의: 여기서 currentEditId를 지우지 않습니다! (버그 수정 완료)
         }
 
-        // ★★★ 이 부분의 버그가 해결되었습니다! ★★★
         function saveEdit() {
             if (!currentEditId) return;
             
-            // 번호표(ID)를 까먹기 전에 미리 안전한 곳에 저장해둡니다.
             const targetId = currentEditId; 
             const newText = document.getElementById('editModalInput').value.trim();
             const textDiv = document.getElementById('text-' + targetId);
             
-            closeEditModal(); // 팝업 닫기
-            currentEditId = null; // 이제 지워도 안전합니다.
+            closeEditModal(); 
+            currentEditId = null; 
             
             if (newText === "") return; 
 
@@ -525,7 +522,6 @@
 
             fetch(WEB_APP_URL, {
                 method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
-                // 이제 구글 시트로 targetId가 정확하게 날아갑니다!
                 body: JSON.stringify({ action: 'update', id: targetId, text: newText }) 
             }).then(() => {
                 textDiv.style.opacity = '1';
@@ -543,8 +539,13 @@
             }).then(() => { setTimeout(fetchNotices, 2500); }).catch(e => { alert("삭제 실패"); itemDiv.style.display = 'block'; });
         }
 
+        // 처음 열릴 때 데이터 불러오기
         fetchNotices();
         fetchDdays();
+
+        // ★ 5분(300,000 밀리초)마다 자동으로 전달사항과 디데이를 새로고침합니다.
+        setInterval(fetchNotices, 5 * 60 * 1000);
+        setInterval(fetchDdays, 5 * 60 * 1000);
     </script>
 </body>
 </html>
