@@ -19,14 +19,12 @@
 
         .main-wrapper { display: flex; gap: 20px; width: 100%; max-width: 1400px; height: 90vh; }
         
-        /* 사이드바 메뉴 */
         .sidebar { width: 220px; background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.05); overflow-y: auto; }
         .sidebar-title { font-size: 1.1rem; font-weight: bold; color: var(--accent-mint); margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; flex-shrink: 0;}
         .shortcut-btn { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; text-decoration: none; color: var(--text-main); font-weight: bold; font-size: 0.95rem; transition: all 0.2s ease; flex-shrink: 0;}
         .shortcut-btn:hover { background: rgba(0, 210, 180, 0.15); transform: translateY(-2px); color: var(--accent-mint); }
         .shortcut-icon { font-size: 1.1rem; }
 
-        /* 오른쪽 4분할 화면 */
         .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.5fr 6.5fr; gap: 20px; flex-grow: 1; }
         
         .card { background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -82,15 +80,16 @@
         .notice-input-group button:hover { background: #1de8cb; }
         .loading-text { text-align: center; color: var(--text-sub); margin-top: 20px; }
 
-        .sports-item { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid var(--accent-gold);}
+        #sportsBoard { display: flex; flex-direction: column; gap: 8px; }
+        .sports-item { background: rgba(0, 0, 0, 0.2); padding: 12px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid var(--accent-gold); transition: transform 0.2s;}
+        .sports-item:hover { background: rgba(255, 255, 255, 0.05); transform: translateY(-2px); }
         .team-name { font-weight: bold; font-size: 1.05rem; }
-        .match-info { color: var(--text-sub); font-size: 0.9rem; text-align: right; line-height: 1.4;}
+        .match-info { color: var(--text-sub); font-size: 0.95rem; text-align: right; line-height: 1.4;}
         
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
 
-        /* 수정 팝업 스타일 */
         #editModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;
@@ -144,10 +143,15 @@
             <a href="https://drive.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">☁️</span> 구글 드라이브</a>
             <a href="https://docs.google.com/spreadsheets/" target="_blank" class="shortcut-btn"><span class="shortcut-icon">📊</span> 구글 시트</a>
             <a href="https://www.miricanvas.com/" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🎨</span> 미리캔버스</a>
-            <a href="http://seastar-m.gne.go.kr" target="_blank" class="shortcut-btn" style="margin-bottom: auto;"><span class="shortcut-icon">🏫</span> 해성중학교</a>
+            <a href="http://seastar-m.gne.go.kr" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🏫</span> 해성중학교</a>
+            
+            <a href="https://joo.is/고등학교희망" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🎓</span> 3학년 진학희망 고교</a>
+            <a href="https://joo.is/해성중정보화기기" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🛠️</span> 정보기기 수리접수</a>
+            <a href="https://joo.is/해성중업무" target="_blank" class="shortcut-btn" style="margin-bottom: auto;"><span class="shortcut-icon">📑</span> 해성중 업무시트</a>
         </div>
 
         <div class="dashboard-container">
+            
             <div class="card card-1">
                 <div class="card-header">🕒 시간 · 날씨 · 급식</div>
                 <div class="date-display" id="currentDate">0000년 00월 00일 (요일)</div>
@@ -160,14 +164,12 @@
             </div>
 
             <div class="card card-4">
-                <div class="card-header" style="color: var(--accent-gold);">🏆 스포츠 경기 일정</div>
-                <div class="sports-item">
-                    <div class="team-name">⚾ NC 다이노스</div>
-                    <div class="match-info">정규시즌 개막: 3월 28일 (토) 14:00<br>vs 두산 (창원NC파크)</div>
+                <div class="card-header" style="color: var(--accent-gold);">
+                    🏆 스포츠 경기 일정
+                    <button onclick="fetchSports()" style="background:none; border:none; color:var(--accent-gold); cursor:pointer; font-size:1rem; transition: transform 0.2s;" title="일정 새로고침">🔄</button>
                 </div>
-                <div class="sports-item">
-                    <div class="team-name">🏀 창원 LG 세이커스</div>
-                    <div class="match-info">다음 경기: 3월 26일 (목) 19:00<br>vs 한국가스공사 (대구체육관)</div>
+                <div id="sportsBoard">
+                    <div class="loading-text">최신 일정을 검색 중입니다...</div>
                 </div>
             </div>
 
@@ -277,7 +279,117 @@
         fetchLunchMenu();
 
         // ==========================================
-        // ★ 1. 디데이 연동
+        // ★ 다음(Daum) 검색결과 100% 무적 크롤링 스크립트
+        // ==========================================
+        async function fetchSports() {
+            const board = document.getElementById('sportsBoard');
+            board.innerHTML = '<div class="loading-text">인터넷에서 일정을 직접 찾아오는 중...</div>';
+            
+            try {
+                const now = new Date();
+                const mm = String(now.getMonth() + 1).padStart(2, '0');
+                const dd = String(now.getDate()).padStart(2, '0');
+                const todayStr = mm + "." + dd; // 예: "03.17"
+
+                async function getDaumSchedule(team) {
+                    // 구글 서버 안 거치고 다음(Daum) 검색창에 직통으로 물어봅니다.
+                    const url = "https://search.daum.net/search?w=tot&q=" + encodeURIComponent(team + " 경기일정");
+                    const proxies = [
+                        `https://api.allorigins.win/get?url=${encodeURIComponent(url)}&disableCache=true&_=${Date.now()}`,
+                        `https://corsproxy.io/?${encodeURIComponent(url)}`
+                    ];
+
+                    for (let proxy of proxies) {
+                        try {
+                            const res = await fetch(proxy);
+                            if (!res.ok) continue;
+                            
+                            let html = "";
+                            if (proxy.includes("allorigins")) {
+                                const data = await res.json();
+                                html = data.contents;
+                            } else {
+                                html = await res.text();
+                            }
+                            
+                            if (!html) continue;
+
+                            // 다음 검색화면에서 일정표만 쏙 뽑아냅니다.
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, "text/html");
+                            const tables = doc.querySelectorAll("table");
+                            
+                            for (let tbl of tables) {
+                                if (tbl.textContent.includes("시간") && tbl.textContent.includes("vs")) {
+                                    const trs = tbl.querySelectorAll("tbody tr");
+                                    let lastDate = "";
+                                    
+                                    for (let tr of trs) {
+                                        const tds = tr.querySelectorAll("td, th");
+                                        if (tds.length < 3) continue;
+                                        
+                                        const cells = Array.from(tds).map(td => td.textContent.trim().replace(/\s+/g, ' '));
+                                        
+                                        let dateStr = cells[0];
+                                        let timeStr = cells[1];
+                                        let matchStr = cells[2];
+                                        let placeStr = cells.length > 4 ? cells[4] : (cells[3] || "");
+                                        
+                                        if (!dateStr.match(/\d{2}\.\d{2}/)) {
+                                            dateStr = lastDate;
+                                            timeStr = cells[0];
+                                            matchStr = cells[1];
+                                            placeStr = cells.length > 3 ? cells[3] : (cells[2] || "");
+                                        } else {
+                                            lastDate = dateStr;
+                                        }
+                                        
+                                        let matchDateMatch = dateStr.match(/\d{2}\.\d{2}/);
+                                        if (matchDateMatch) {
+                                            let matchDate = matchDateMatch[0];
+                                            // 오늘 경기거나 앞으로 다가올 경기일 경우 화면에 출력!
+                                            if (matchDate >= todayStr && timeStr.includes(":") && matchStr.includes("vs") && !matchStr.includes("취소")) {
+                                                return `${dateStr} ${timeStr}<br>${matchStr} <span style="font-size:0.85rem">(${placeStr})</span>`;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } catch(e) { console.log(e); }
+                    }
+                    return "예정된 경기 없음";
+                }
+
+                // 3팀 일정 동시에 가져오기
+                const [lg, nc, lotte] = await Promise.all([
+                    getDaumSchedule("창원 LG 세이커스"),
+                    getDaumSchedule("NC 다이노스"),
+                    getDaumSchedule("롯데 자이언츠")
+                ]);
+
+                board.innerHTML = `
+                    <div class="sports-item">
+                        <div class="team-name">🏀 창원 LG 세이커스</div>
+                        <div class="match-info">${lg}</div>
+                    </div>
+                    <div class="sports-item">
+                        <div class="team-name">⚾ NC 다이노스</div>
+                        <div class="match-info">${nc}</div>
+                    </div>
+                    <div class="sports-item">
+                        <div class="team-name">⚾ 롯데 자이언츠</div>
+                        <div class="match-info">${lotte}</div>
+                    </div>
+                `;
+            } catch (error) {
+                board.innerHTML = '<div class="loading-text" style="color:var(--accent-red);">일정 정보를 불러올 수 없습니다.</div>';
+            }
+        }
+        fetchSports();
+
+
+        // ==========================================
+        // ★ 디데이 연동
         // ==========================================
         let ddayItems = [];
         let editingDdayIndex = -1; 
@@ -391,9 +503,8 @@
             });
         }
 
-
         // ==========================================
-        // ★ 2. 전달사항 게시판 연동
+        // ★ 전달사항 게시판 연동
         // ==========================================
         async function fetchNotices() {
             const boardEl = document.getElementById('noticeBoard');
@@ -545,9 +656,10 @@
         fetchNotices();
         fetchDdays();
 
-        // ★ 5분마다 자동으로 데이터 새로고침
+        // 5분마다 자동으로 모든 데이터 새로고침
         setInterval(fetchNotices, 5 * 60 * 1000);
         setInterval(fetchDdays, 5 * 60 * 1000);
+        setInterval(fetchSports, 5 * 60 * 1000);
     </script>
 </body>
 </html>
