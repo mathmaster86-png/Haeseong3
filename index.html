@@ -232,7 +232,8 @@
             const month = now.getMonth() + 1;
             const date = String(now.getDate()).padStart(2, '0');
             const days = ['일', '월', '화', '수', '목', '금', '토'];
-            const day = days[now.getDay()];
+            const dayOfWeek = now.getDay();
+            const day = days[dayOfWeek];
             document.getElementById('currentDate').textContent = `${year}년 ${String(month).padStart(2, '0')}월 ${date}일 (${day})`;
 
             const hours = String(now.getHours()).padStart(2, '0');
@@ -242,14 +243,29 @@
 
             const currentTimeStr = hours + minutes;
             let periodText = "현재 수업 외 시간입니다.";
-            if (currentTimeStr >= "0850" && currentTimeStr < "0900") periodText = "조회 시간입니다.";
-            else if (currentTimeStr >= "0900" && currentTimeStr < "0945") periodText = "현재 1교시 수업 중입니다.";
-            else if (currentTimeStr >= "0955" && currentTimeStr < "1040") periodText = "현재 2교시 수업 중입니다.";
-            else if (currentTimeStr >= "1050" && currentTimeStr < "1135") periodText = "현재 3교시 수업 중입니다.";
-            else if (currentTimeStr >= "1145" && currentTimeStr < "1230") periodText = "현재 4교시 수업 중입니다.";
-            else if (currentTimeStr >= "1230" && currentTimeStr < "1330") periodText = "점심 시간입니다. 🍱";
-            else if (currentTimeStr >= "1330" && currentTimeStr < "1415") periodText = "현재 5교시 수업 중입니다.";
-            else if (currentTimeStr >= "1425" && currentTimeStr < "1510") periodText = "현재 6교시 수업 중입니다.";
+
+            if (dayOfWeek === 3) {
+                // 수요일 (10분 지연)
+                if (currentTimeStr >= "0900" && currentTimeStr < "0910") periodText = "조회 시간입니다.";
+                else if (currentTimeStr >= "0910" && currentTimeStr < "0955") periodText = "현재 1교시 수업 중입니다.";
+                else if (currentTimeStr >= "1005" && currentTimeStr < "1050") periodText = "현재 2교시 수업 중입니다.";
+                else if (currentTimeStr >= "1100" && currentTimeStr < "1145") periodText = "현재 3교시 수업 중입니다.";
+                else if (currentTimeStr >= "1155" && currentTimeStr < "1240") periodText = "현재 4교시 수업 중입니다.";
+                else if (currentTimeStr >= "1240" && currentTimeStr < "1340") periodText = "점심 시간입니다. 🍱";
+                else if (currentTimeStr >= "1340" && currentTimeStr < "1425") periodText = "현재 5교시 수업 중입니다.";
+                else if (currentTimeStr >= "1435" && currentTimeStr < "1520") periodText = "현재 6교시 수업 중입니다.";
+            } else {
+                // 월, 화, 목, 금
+                if (currentTimeStr >= "0850" && currentTimeStr < "0900") periodText = "조회 시간입니다.";
+                else if (currentTimeStr >= "0900" && currentTimeStr < "0945") periodText = "현재 1교시 수업 중입니다.";
+                else if (currentTimeStr >= "0955" && currentTimeStr < "1040") periodText = "현재 2교시 수업 중입니다.";
+                else if (currentTimeStr >= "1050" && currentTimeStr < "1135") periodText = "현재 3교시 수업 중입니다.";
+                else if (currentTimeStr >= "1145" && currentTimeStr < "1230") periodText = "현재 4교시 수업 중입니다.";
+                else if (currentTimeStr >= "1230" && currentTimeStr < "1330") periodText = "점심 시간입니다. 🍱";
+                else if (currentTimeStr >= "1330" && currentTimeStr < "1415") periodText = "현재 5교시 수업 중입니다.";
+                else if (currentTimeStr >= "1425" && currentTimeStr < "1510") periodText = "현재 6교시 수업 중입니다.";
+            }
+
             document.getElementById('periodInfo').textContent = periodText;
         }
         updateTime(); setInterval(updateTime, 1000);
@@ -301,98 +317,29 @@
 
         async function fetchSports() {
             const board = document.getElementById('sportsBoard');
-            board.innerHTML = '<div class="loading-text">인터넷에서 일정을 직접 찾아오는 중...</div>';
+            board.innerHTML = '<div class="loading-text">최신 일정을 검색 중입니다...</div>';
             
             try {
-                const now = new Date();
-                const mm = String(now.getMonth() + 1).padStart(2, '0');
-                const dd = String(now.getDate()).padStart(2, '0');
-                const todayStr = mm + "." + dd; 
-
-                async function getDaumSchedule(team) {
-                    const url = "https://search.daum.net/search?w=tot&q=" + encodeURIComponent(team + " 경기일정");
-                    const proxies = [
-                        `https://api.allorigins.win/get?url=${encodeURIComponent(url)}&disableCache=true&_=${Date.now()}`,
-                        `https://corsproxy.io/?${encodeURIComponent(url)}`
-                    ];
-
-                    for (let proxy of proxies) {
-                        try {
-                            const res = await fetch(proxy);
-                            if (!res.ok) continue;
-                            
-                            let html = "";
-                            if (proxy.includes("allorigins")) {
-                                const data = await res.json();
-                                html = data.contents;
-                            } else {
-                                html = await res.text();
-                            }
-                            
-                            if (!html) continue;
-
-                            const parser = new DOMParser();
-                            const doc = parser.parseFromString(html, "text/html");
-                            const tables = doc.querySelectorAll("table");
-                            
-                            for (let tbl of tables) {
-                                if (tbl.textContent.includes("시간") && tbl.textContent.includes("vs")) {
-                                    const trs = tbl.querySelectorAll("tbody tr");
-                                    let lastDate = "";
-                                    
-                                    for (let tr of trs) {
-                                        const tds = tr.querySelectorAll("td, th");
-                                        if (tds.length < 3) continue;
-                                        
-                                        const cells = Array.from(tds).map(td => td.textContent.trim().replace(/\s+/g, ' '));
-                                        
-                                        let dateStr = cells[0];
-                                        let timeStr = cells[1];
-                                        let matchStr = cells[2];
-                                        let placeStr = cells.length > 4 ? cells[4] : (cells[3] || "");
-                                        
-                                        if (!dateStr.match(/\d{2}\.\d{2}/)) {
-                                            dateStr = lastDate;
-                                            timeStr = cells[0];
-                                            matchStr = cells[1];
-                                            placeStr = cells.length > 3 ? cells[3] : (cells[2] || "");
-                                        } else {
-                                            lastDate = dateStr;
-                                        }
-                                        
-                                        let matchDateMatch = dateStr.match(/\d{2}\.\d{2}/);
-                                        if (matchDateMatch) {
-                                            let matchDate = matchDateMatch[0];
-                                            if (matchDate >= todayStr && timeStr.includes(":") && matchStr.includes("vs") && !matchStr.includes("취소")) {
-                                                return `${dateStr} ${timeStr}<br>${matchStr} <span style="font-size:0.85rem">(${placeStr})</span>`;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        } catch(e) {}
-                    }
-                    return "예정된 경기 없음";
+                const response = await fetch(WEB_APP_URL + "?type=sports&t=" + new Date().getTime());
+                const data = await response.json();
+                
+                if (data.error) {
+                    console.error("Scraping Error:", data.message);
+                    throw new Error("서버 스크래핑 에러");
                 }
-
-                const [lg, nc, lotte] = await Promise.all([
-                    getDaumSchedule("창원 LG 세이커스"),
-                    getDaumSchedule("NC 다이노스"),
-                    getDaumSchedule("롯데 자이언츠")
-                ]);
 
                 board.innerHTML = `
                     <div class="sports-item">
                         <div class="team-name">🏀 창원 LG 세이커스</div>
-                        <div class="match-info">${lg}</div>
+                        <div class="match-info">${data.lg}</div>
                     </div>
                     <div class="sports-item">
                         <div class="team-name">⚾ NC 다이노스</div>
-                        <div class="match-info">${nc}</div>
+                        <div class="match-info">${data.nc}</div>
                     </div>
                     <div class="sports-item">
                         <div class="team-name">⚾ 롯데 자이언츠</div>
-                        <div class="match-info">${lotte}</div>
+                        <div class="match-info">${data.lotte}</div>
                     </div>
                 `;
             } catch (error) {
