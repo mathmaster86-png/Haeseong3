@@ -19,11 +19,23 @@
 
         .main-wrapper { display: flex; gap: 20px; width: 100%; max-width: 1400px; height: 90vh; }
         
-        .sidebar { width: 220px; background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.05); overflow-y: auto; }
-        .sidebar-title { font-size: 1.1rem; font-weight: bold; color: var(--accent-mint); margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; flex-shrink: 0;}
-        .shortcut-btn { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; text-decoration: none; color: var(--text-main); font-weight: bold; font-size: 0.95rem; transition: all 0.2s ease; flex-shrink: 0;}
-        .shortcut-btn:hover { background: rgba(0, 210, 180, 0.15); transform: translateY(-2px); color: var(--accent-mint); }
+        .sidebar { width: 220px; background-color: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.05); overflow-y: auto; }
+        .sidebar-title { font-size: 1.1rem; font-weight: bold; color: var(--accent-mint); margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; flex-shrink: 0;}
+        .shortcut-btn { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: all 0.2s ease; flex-shrink: 0;}
         .shortcut-icon { font-size: 1.1rem; }
+
+        /* ★ 바로가기 그룹별 색상 지정 */
+        .shortcut-btn.group-1 { color: #90CAF9; } /* 파스텔 블루 */
+        .shortcut-btn.group-2 { color: #FFE082; } /* 파스텔 옐로우 */
+        .shortcut-btn.group-3 { color: #CE93D8; } /* 파스텔 퍼플 */
+        .shortcut-btn.group-4 { color: #A5D6A7; } /* 파스텔 그린 */
+        
+        .shortcut-btn.group-1:hover { background: rgba(144, 202, 249, 0.15); color: #BBDEFB; transform: translateY(-2px); }
+        .shortcut-btn.group-2:hover { background: rgba(255, 224, 130, 0.15); color: #FFECB3; transform: translateY(-2px); }
+        .shortcut-btn.group-3:hover { background: rgba(206, 147, 216, 0.15); color: #E1BEE7; transform: translateY(-2px); }
+        .shortcut-btn.group-4:hover { background: rgba(165, 214, 167, 0.15); color: #C8E6C9; transform: translateY(-2px); }
+
+        .menu-divider { border-top: 1px dashed rgba(255,255,255,0.15); margin: 4px 0; flex-shrink: 0; }
 
         .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.5fr 6.5fr; gap: 20px; flex-grow: 1; }
         
@@ -133,21 +145,30 @@
     <div class="main-wrapper">
         <div class="sidebar">
             <div class="sidebar-title">⭐ 바로가기</div>
-            <a href="https://gne.eduptl.kr/bpm_lgn_lg00_001.do?noEpSession" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🏢</span> 업무포털 (경남)</a>
-            <a href="https://newtab.itt.link/v3/index.do" target="_blank" class="shortcut-btn"><span class="shortcut-icon">💬</span> 아이톡톡</a>
-            <a href="https://www.naver.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🟩</span> 네이버</a>
-            <a href="https://search.naver.com/search.naver?query=계산기" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🧮</span> 네이버 계산기</a>
-            <a href="https://www.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🔍</span> 구글</a>
-            <a href="https://gemini.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">✨</span> 제미나이</a>
-            <a href="https://chatgpt.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🤖</span> ChatGPT</a>
-            <a href="https://drive.google.com" target="_blank" class="shortcut-btn"><span class="shortcut-icon">☁️</span> 구글 드라이브</a>
-            <a href="https://docs.google.com/spreadsheets/" target="_blank" class="shortcut-btn"><span class="shortcut-icon">📊</span> 구글 시트</a>
-            <a href="https://www.miricanvas.com/" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🎨</span> 미리캔버스</a>
-            <a href="http://seastar-m.gne.go.kr" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🏫</span> 해성중학교</a>
             
-            <a href="https://joo.is/고등학교희망" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🎓</span> 3학년 진학희망 고교</a>
-            <a href="https://joo.is/해성중정보화기기" target="_blank" class="shortcut-btn"><span class="shortcut-icon">🛠️</span> 정보기기 수리접수</a>
-            <a href="https://joo.is/해성중업무" target="_blank" class="shortcut-btn" style="margin-bottom: auto;"><span class="shortcut-icon">📑</span> 해성중 업무시트</a>
+            <a href="https://gne.eduptl.kr/bpm_lgn_lg00_001.do?noEpSession" target="_blank" class="shortcut-btn group-1"><span class="shortcut-icon">🏢</span> 업무포털 (경남)</a>
+            <a href="https://newtab.itt.link/v3/index.do" target="_blank" class="shortcut-btn group-1"><span class="shortcut-icon">💬</span> 아이톡톡</a>
+            <a href="https://www.naver.com" target="_blank" class="shortcut-btn group-1"><span class="shortcut-icon">🟩</span> 네이버</a>
+            <a href="https://www.google.com" target="_blank" class="shortcut-btn group-1"><span class="shortcut-icon">🔍</span> 구글</a>
+            
+            <div class="menu-divider"></div>
+            
+            <a href="http://seastar-m.gne.go.kr" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🏫</span> 해성중학교</a>
+            <a href="https://joo.is/고등학교희망" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🎓</span> 3학년 진학희망 고교</a>
+            <a href="https://joo.is/해성중정보화기기" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🛠️</span> 정보기기 수리접수</a>
+            <a href="https://joo.is/해성중업무" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">📑</span> 해성중 업무시트</a>
+            
+            <div class="menu-divider"></div>
+
+            <a href="https://chatgpt.com" target="_blank" class="shortcut-btn group-3"><span class="shortcut-icon">🤖</span> ChatGPT</a>
+            <a href="https://gemini.google.com" target="_blank" class="shortcut-btn group-3"><span class="shortcut-icon">✨</span> 제미나이</a>
+            <a href="https://search.naver.com/search.naver?query=계산기" target="_blank" class="shortcut-btn group-3"><span class="shortcut-icon">🧮</span> 네이버 계산기</a>
+            <a href="https://www.miricanvas.com/" target="_blank" class="shortcut-btn group-3"><span class="shortcut-icon">🎨</span> 미리캔버스</a>
+            
+            <div class="menu-divider"></div>
+
+            <a href="https://www.gneti.or.kr" target="_blank" class="shortcut-btn group-4"><span class="shortcut-icon">📚</span> 경남교육연수</a>
+            <a href="https://www.gnlec.kr/" target="_blank" class="shortcut-btn group-4" style="margin-bottom: auto;"><span class="shortcut-icon">💻</span> 온라인 전달연수</a>
         </div>
 
         <div class="dashboard-container">
@@ -278,9 +299,6 @@
         }
         fetchLunchMenu();
 
-        // ==========================================
-        // ★ 다음(Daum) 검색결과 100% 무적 크롤링 스크립트
-        // ==========================================
         async function fetchSports() {
             const board = document.getElementById('sportsBoard');
             board.innerHTML = '<div class="loading-text">인터넷에서 일정을 직접 찾아오는 중...</div>';
@@ -289,10 +307,9 @@
                 const now = new Date();
                 const mm = String(now.getMonth() + 1).padStart(2, '0');
                 const dd = String(now.getDate()).padStart(2, '0');
-                const todayStr = mm + "." + dd; // 예: "03.17"
+                const todayStr = mm + "." + dd; 
 
                 async function getDaumSchedule(team) {
-                    // 구글 서버 안 거치고 다음(Daum) 검색창에 직통으로 물어봅니다.
                     const url = "https://search.daum.net/search?w=tot&q=" + encodeURIComponent(team + " 경기일정");
                     const proxies = [
                         `https://api.allorigins.win/get?url=${encodeURIComponent(url)}&disableCache=true&_=${Date.now()}`,
@@ -314,7 +331,6 @@
                             
                             if (!html) continue;
 
-                            // 다음 검색화면에서 일정표만 쏙 뽑아냅니다.
                             const parser = new DOMParser();
                             const doc = parser.parseFromString(html, "text/html");
                             const tables = doc.querySelectorAll("table");
@@ -347,7 +363,6 @@
                                         let matchDateMatch = dateStr.match(/\d{2}\.\d{2}/);
                                         if (matchDateMatch) {
                                             let matchDate = matchDateMatch[0];
-                                            // 오늘 경기거나 앞으로 다가올 경기일 경우 화면에 출력!
                                             if (matchDate >= todayStr && timeStr.includes(":") && matchStr.includes("vs") && !matchStr.includes("취소")) {
                                                 return `${dateStr} ${timeStr}<br>${matchStr} <span style="font-size:0.85rem">(${placeStr})</span>`;
                                             }
@@ -355,12 +370,11 @@
                                     }
                                 }
                             }
-                        } catch(e) { console.log(e); }
+                        } catch(e) {}
                     }
                     return "예정된 경기 없음";
                 }
 
-                // 3팀 일정 동시에 가져오기
                 const [lg, nc, lotte] = await Promise.all([
                     getDaumSchedule("창원 LG 세이커스"),
                     getDaumSchedule("NC 다이노스"),
@@ -386,7 +400,6 @@
             }
         }
         fetchSports();
-
 
         // ==========================================
         // ★ 디데이 연동
