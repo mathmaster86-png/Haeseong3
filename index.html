@@ -92,7 +92,6 @@
         .modal-content textarea { width: 100%; height: 160px; background: rgba(0,0,0,0.3); color: #fff; padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: inherit; font-size: 1.1rem; line-height: 1.5; resize: none; outline: none; box-sizing: border-box; }
         .modal-content textarea:focus { border-color: var(--accent-mint); }
         
-        /* 파일 첨부 버튼 스타일 */
         input[type="file"]::file-selector-button { background: var(--card-bg); color: var(--accent-gold); border: 1px solid var(--accent-gold); border-radius: 4px; padding: 6px 12px; cursor: pointer; transition: 0.2s; font-weight: bold; }
         input[type="file"]::file-selector-button:hover { background: var(--accent-gold); color: #000; }
     </style>
@@ -178,7 +177,6 @@
     </div>
 
     <script>
-        // ★ 알려주신 선생님의 새로운 URL 적용 완료!
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzpJTCMBVu6c4VQcgdPBhcjPSyP2jS39oo4jrZorFxMS2TeERemAL-oSO7NEaFePdVUHw/exec"; 
 
         const formatPeriod = (msg, timeStr) => `${msg} <span style="color: #ffffff; font-size: 0.95em; font-weight: 500; margin-left: 6px;">(${timeStr})</span>`;
@@ -333,7 +331,6 @@
                     }
                     
                     const time = html.split('<br>')[0];
-                    // 정규식 수정: 경기 정보라는 글자가 씹히지 않도록 안전하게 수정
                     const titleMatch = html.match(/color:#fff['"]>([^<]+)<\/span>/);
                     const title = titleMatch ? titleMatch[1] : "경기 정보";
                     const locs = html.match(/\(([^)]+)\)/g);
@@ -382,7 +379,6 @@
 
                 data.reverse().forEach(i => {
                     const isToday = i.날짜 === today;
-                    // 내용이 비어있어도 오류나지 않게 처리
                     const content = i.내용 ? String(i.내용).replace(/\n/g,'<br>') : '';
                     
                     const itemHtml = `<div class="notice-item ${isToday?'today':'past'}">
@@ -421,7 +417,6 @@
                     const dText = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-Day' : `D+${Math.abs(diff)}`);
                     const isTodayClass = diff === 0 ? 'dday-today' : '';
                     
-                    // 파일 첨부 링크 아이콘 설정
                     const fileIcon = i.파일링크 ? `<a href="${i.파일링크}" target="_blank" style="margin-right:8px; text-decoration:none; font-size:1.2rem; transition:0.2s;" title="양식 다운로드">💾</a>` : '';
                     
                     return `<div class="d-day-box ${isTodayClass}">
@@ -474,11 +469,17 @@
 
             if(!n || !d) { alert('일정명과 날짜를 입력해주세요!'); return; }
 
-            btn.innerText = "업로드중...";
-            btn.disabled = true;
-
+            // ★ 5MB 용량 제한 안전장치 추가
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
+                if (file.size > 5 * 1024 * 1024) { 
+                    alert("첨부파일은 5MB 이하만 가능합니다. (앱스 스크립트 용량 제한)");
+                    return;
+                }
+                
+                btn.innerText = "업로드중...";
+                btn.disabled = true;
+                
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const base64Data = e.target.result.split(',')[1];
@@ -492,6 +493,9 @@
                 };
                 reader.readAsDataURL(file);
             } else {
+                btn.innerText = "저장중...";
+                btn.disabled = true;
+                
                 fetch(WEB_APP_URL, {
                     method:'POST', mode:'no-cors',
                     body:JSON.stringify({ action:'create', type:'dday', name:n, date:d })
