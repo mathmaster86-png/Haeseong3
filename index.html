@@ -46,7 +46,6 @@
         .card-3 { grid-area: 2 / 1 / 3 / 2; } 
         .card-2 { grid-area: 2 / 2 / 3 / 3; } 
 
-        /* ★ 날짜 텍스트를 쨍한 핑크색(#FF4081)으로 변경하고 약간 굵게 처리 */
         .date-display { font-size: 1.1rem; color: #FF4081; text-align: center; font-weight: bold; letter-spacing: 1px; }
         .time-display { font-size: 3.2rem; font-weight: bold; text-align: center; color: var(--accent-gold); letter-spacing: 2px; }
         .weather-display { font-size: 1rem; text-align: center; color: #fff; margin: 5px 0; font-weight: 500; }
@@ -174,6 +173,7 @@
     <script>
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT1sm-0Qy8PzqNZRY_b1zaMX8Fv2oam4PpteahW62b05gtSSwLrkoyEO-1bhAEcnwyIA/exec"; 
 
+        // ★ 시간표/쉬는시간/청소시간 완벽 분리 적용
         function updateTime() {
             const now = new Date();
             const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -188,37 +188,66 @@
             const day = now.getDay();
             let pText = "현재 수업 외 시간입니다.";
             
-            if (day === 3) {
+            if (day === 0 || day === 6) {
+                pText = "주말입니다. 편안한 휴일 보내세요! 🌿";
+            } else if (day === 3) {
+                // 수요일 로직
                 if (timeVal >= 900 && timeVal < 910) pText = "조회 시간입니다.";
                 else if (timeVal >= 910 && timeVal < 955) pText = "현재 1교시 수업 중입니다.";
+                else if (timeVal >= 955 && timeVal < 1005) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1005 && timeVal < 1050) pText = "현재 2교시 수업 중입니다.";
+                else if (timeVal >= 1050 && timeVal < 1100) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1100 && timeVal < 1145) pText = "현재 3교시 수업 중입니다.";
+                else if (timeVal >= 1145 && timeVal < 1155) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1155 && timeVal < 1240) pText = "현재 4교시 수업 중입니다.";
                 else if (timeVal >= 1240 && timeVal < 1340) pText = "점심 시간입니다. 🍱";
                 else if (timeVal >= 1340 && timeVal < 1425) pText = "현재 5교시 수업 중입니다.";
+                else if (timeVal >= 1425 && timeVal < 1435) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1435 && timeVal < 1520) pText = "현재 6교시 수업 중입니다.";
-            } else if (day >= 1 && day <= 5) {
+                else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
+            } else if (day === 2 || day === 4) {
+                // 화, 목 로직 (7교시 있음)
                 if (timeVal >= 850 && timeVal < 900) pText = "조회 시간입니다.";
                 else if (timeVal >= 900 && timeVal < 945) pText = "현재 1교시 수업 중입니다.";
+                else if (timeVal >= 945 && timeVal < 955) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 955 && timeVal < 1040) pText = "현재 2교시 수업 중입니다.";
+                else if (timeVal >= 1040 && timeVal < 1050) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1050 && timeVal < 1135) pText = "현재 3교시 수업 중입니다.";
+                else if (timeVal >= 1135 && timeVal < 1145) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1145 && timeVal < 1230) pText = "현재 4교시 수업 중입니다.";
                 else if (timeVal >= 1230 && timeVal < 1330) pText = "점심 시간입니다. 🍱";
                 else if (timeVal >= 1330 && timeVal < 1415) pText = "현재 5교시 수업 중입니다.";
+                else if (timeVal >= 1415 && timeVal < 1425) pText = "지금은 쉬는 시간입니다.";
                 else if (timeVal >= 1425 && timeVal < 1510) pText = "현재 6교시 수업 중입니다.";
+                else if (timeVal >= 1510 && timeVal < 1520) pText = "지금은 쉬는 시간입니다.";
+                else if (timeVal >= 1520 && timeVal < 1605) pText = "현재 7교시 수업 중입니다.";
+                else if (timeVal >= 1605) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
+            } else if (day === 1 || day === 5) {
+                // 월, 금 로직 (5교시 후 청소, 6교시 있음)
+                if (timeVal >= 850 && timeVal < 900) pText = "조회 시간입니다.";
+                else if (timeVal >= 900 && timeVal < 945) pText = "현재 1교시 수업 중입니다.";
+                else if (timeVal >= 945 && timeVal < 955) pText = "지금은 쉬는 시간입니다.";
+                else if (timeVal >= 955 && timeVal < 1040) pText = "현재 2교시 수업 중입니다.";
+                else if (timeVal >= 1040 && timeVal < 1050) pText = "지금은 쉬는 시간입니다.";
+                else if (timeVal >= 1050 && timeVal < 1135) pText = "현재 3교시 수업 중입니다.";
+                else if (timeVal >= 1135 && timeVal < 1145) pText = "지금은 쉬는 시간입니다.";
+                else if (timeVal >= 1145 && timeVal < 1230) pText = "현재 4교시 수업 중입니다.";
+                else if (timeVal >= 1230 && timeVal < 1330) pText = "점심 시간입니다. 🍱";
+                else if (timeVal >= 1330 && timeVal < 1415) pText = "현재 5교시 수업 중입니다.";
+                else if (timeVal >= 1415 && timeVal < 1435) pText = "지금은 청소 시간입니다. 🧹";
+                else if (timeVal >= 1435 && timeVal < 1520) pText = "현재 6교시 수업 중입니다.";
+                else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             }
+            
             document.getElementById('periodInfo').textContent = pText;
         }
         updateTime(); setInterval(updateTime, 1000);
 
-        // ★ 날씨 로직 업데이트: 내일 날씨 데이터(기온, 날씨코드)까지 한 번에 불러오기
         async function fetchWeather() {
             try {
-                // API에 daily=weather_code 추가
                 const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=34.8806&longitude=128.6211&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul`);
                 const data = await res.json();
                 
-                // 날씨 코드에 따른 아이콘 변환 함수
                 const getIcon = (code) => {
                     if(code === 0) return "☀️";
                     if(code < 3) return "⛅";
@@ -227,13 +256,11 @@
                     return "☁️";
                 };
 
-                // 오늘 날씨
                 const currentTemp = Math.round(data.current.temperature_2m);
                 const currentCode = data.current.weather_code;
                 const todayMax = Math.round(data.daily.temperature_2m_max[0]);
                 const todayMin = Math.round(data.daily.temperature_2m_min[0]);
                 
-                // 내일 날씨
                 const tmrwCode = data.daily.weather_code[1];
                 const tmrwMax = Math.round(data.daily.temperature_2m_max[1]);
                 const tmrwMin = Math.round(data.daily.temperature_2m_min[1]);
