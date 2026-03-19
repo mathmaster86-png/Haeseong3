@@ -173,7 +173,9 @@
     <script>
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT1sm-0Qy8PzqNZRY_b1zaMX8Fv2oam4PpteahW62b05gtSSwLrkoyEO-1bhAEcnwyIA/exec"; 
 
-        // ★ 시간표/쉬는시간/청소시간 완벽 분리 적용
+        // ★ 일과 텍스트와 시간 텍스트를 흰색으로 조합해주는 헬퍼 함수
+        const formatPeriod = (msg, timeStr) => `${msg} <span style="color: #ffffff; font-size: 0.95em; font-weight: 500; margin-left: 6px;">(${timeStr})</span>`;
+
         function updateTime() {
             const now = new Date();
             const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -191,55 +193,56 @@
             if (day === 0 || day === 6) {
                 pText = "주말입니다. 편안한 휴일 보내세요! 🌿";
             } else if (day === 3) {
-                // 수요일 로직
-                if (timeVal >= 900 && timeVal < 910) pText = "조회 시간입니다.";
-                else if (timeVal >= 910 && timeVal < 955) pText = "현재 1교시 수업 중입니다.";
-                else if (timeVal >= 955 && timeVal < 1005) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1005 && timeVal < 1050) pText = "현재 2교시 수업 중입니다.";
-                else if (timeVal >= 1050 && timeVal < 1100) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1100 && timeVal < 1145) pText = "현재 3교시 수업 중입니다.";
-                else if (timeVal >= 1145 && timeVal < 1155) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1155 && timeVal < 1240) pText = "현재 4교시 수업 중입니다.";
-                else if (timeVal >= 1240 && timeVal < 1340) pText = "점심 시간입니다. 🍱";
-                else if (timeVal >= 1340 && timeVal < 1425) pText = "현재 5교시 수업 중입니다.";
-                else if (timeVal >= 1425 && timeVal < 1435) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1435 && timeVal < 1520) pText = "현재 6교시 수업 중입니다.";
+                // 수요일 로직 (시간 텍스트 추가)
+                if (timeVal >= 900 && timeVal < 910) pText = formatPeriod("조회 시간입니다.", "09:00~09:10");
+                else if (timeVal >= 910 && timeVal < 955) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:10~09:55");
+                else if (timeVal >= 955 && timeVal < 1005) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:55~10:05");
+                else if (timeVal >= 1005 && timeVal < 1050) pText = formatPeriod("현재 2교시 수업 중입니다.", "10:05~10:50");
+                else if (timeVal >= 1050 && timeVal < 1100) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:50~11:00");
+                else if (timeVal >= 1100 && timeVal < 1145) pText = formatPeriod("현재 3교시 수업 중입니다.", "11:00~11:45");
+                else if (timeVal >= 1145 && timeVal < 1155) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:45~11:55");
+                else if (timeVal >= 1155 && timeVal < 1240) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:55~12:40");
+                else if (timeVal >= 1240 && timeVal < 1340) pText = formatPeriod("점심 시간입니다. 🍱", "12:40~13:40");
+                else if (timeVal >= 1340 && timeVal < 1425) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:40~14:25");
+                else if (timeVal >= 1425 && timeVal < 1435) pText = formatPeriod("지금은 쉬는 시간입니다.", "14:25~14:35");
+                else if (timeVal >= 1435 && timeVal < 1520) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:35~15:20");
                 else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             } else if (day === 2 || day === 4) {
-                // 화, 목 로직 (7교시 있음)
-                if (timeVal >= 850 && timeVal < 900) pText = "조회 시간입니다.";
-                else if (timeVal >= 900 && timeVal < 945) pText = "현재 1교시 수업 중입니다.";
-                else if (timeVal >= 945 && timeVal < 955) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 955 && timeVal < 1040) pText = "현재 2교시 수업 중입니다.";
-                else if (timeVal >= 1040 && timeVal < 1050) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1050 && timeVal < 1135) pText = "현재 3교시 수업 중입니다.";
-                else if (timeVal >= 1135 && timeVal < 1145) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1145 && timeVal < 1230) pText = "현재 4교시 수업 중입니다.";
-                else if (timeVal >= 1230 && timeVal < 1330) pText = "점심 시간입니다. 🍱";
-                else if (timeVal >= 1330 && timeVal < 1415) pText = "현재 5교시 수업 중입니다.";
-                else if (timeVal >= 1415 && timeVal < 1425) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1425 && timeVal < 1510) pText = "현재 6교시 수업 중입니다.";
-                else if (timeVal >= 1510 && timeVal < 1520) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1520 && timeVal < 1605) pText = "현재 7교시 수업 중입니다.";
+                // 화, 목 로직 (7교시 포함, 시간 텍스트 추가)
+                if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
+                else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
+                else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
+                else if (timeVal >= 955 && timeVal < 1040) pText = formatPeriod("현재 2교시 수업 중입니다.", "09:55~10:40");
+                else if (timeVal >= 1040 && timeVal < 1050) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:40~10:50");
+                else if (timeVal >= 1050 && timeVal < 1135) pText = formatPeriod("현재 3교시 수업 중입니다.", "10:50~11:35");
+                else if (timeVal >= 1135 && timeVal < 1145) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:35~11:45");
+                else if (timeVal >= 1145 && timeVal < 1230) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:45~12:30");
+                else if (timeVal >= 1230 && timeVal < 1330) pText = formatPeriod("점심 시간입니다. 🍱", "12:30~13:30");
+                else if (timeVal >= 1330 && timeVal < 1415) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:30~14:15");
+                else if (timeVal >= 1415 && timeVal < 1425) pText = formatPeriod("지금은 쉬는 시간입니다.", "14:15~14:25");
+                else if (timeVal >= 1425 && timeVal < 1510) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:25~15:10");
+                else if (timeVal >= 1510 && timeVal < 1520) pText = formatPeriod("지금은 쉬는 시간입니다.", "15:10~15:20");
+                else if (timeVal >= 1520 && timeVal < 1605) pText = formatPeriod("현재 7교시 수업 중입니다.", "15:20~16:05");
                 else if (timeVal >= 1605) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             } else if (day === 1 || day === 5) {
-                // 월, 금 로직 (5교시 후 청소, 6교시 있음)
-                if (timeVal >= 850 && timeVal < 900) pText = "조회 시간입니다.";
-                else if (timeVal >= 900 && timeVal < 945) pText = "현재 1교시 수업 중입니다.";
-                else if (timeVal >= 945 && timeVal < 955) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 955 && timeVal < 1040) pText = "현재 2교시 수업 중입니다.";
-                else if (timeVal >= 1040 && timeVal < 1050) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1050 && timeVal < 1135) pText = "현재 3교시 수업 중입니다.";
-                else if (timeVal >= 1135 && timeVal < 1145) pText = "지금은 쉬는 시간입니다.";
-                else if (timeVal >= 1145 && timeVal < 1230) pText = "현재 4교시 수업 중입니다.";
-                else if (timeVal >= 1230 && timeVal < 1330) pText = "점심 시간입니다. 🍱";
-                else if (timeVal >= 1330 && timeVal < 1415) pText = "현재 5교시 수업 중입니다.";
-                else if (timeVal >= 1415 && timeVal < 1435) pText = "지금은 청소 시간입니다. 🧹";
-                else if (timeVal >= 1435 && timeVal < 1520) pText = "현재 6교시 수업 중입니다.";
+                // 월, 금 로직 (청소시간 포함, 시간 텍스트 추가)
+                if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
+                else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
+                else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
+                else if (timeVal >= 955 && timeVal < 1040) pText = formatPeriod("현재 2교시 수업 중입니다.", "09:55~10:40");
+                else if (timeVal >= 1040 && timeVal < 1050) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:40~10:50");
+                else if (timeVal >= 1050 && timeVal < 1135) pText = formatPeriod("현재 3교시 수업 중입니다.", "10:50~11:35");
+                else if (timeVal >= 1135 && timeVal < 1145) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:35~11:45");
+                else if (timeVal >= 1145 && timeVal < 1230) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:45~12:30");
+                else if (timeVal >= 1230 && timeVal < 1330) pText = formatPeriod("점심 시간입니다. 🍱", "12:30~13:30");
+                else if (timeVal >= 1330 && timeVal < 1415) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:30~14:15");
+                else if (timeVal >= 1415 && timeVal < 1435) pText = formatPeriod("지금은 청소 시간입니다. 🧹", "14:15~14:35");
+                else if (timeVal >= 1435 && timeVal < 1520) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:35~15:20");
                 else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             }
             
-            document.getElementById('periodInfo').textContent = pText;
+            // ★ innerHTML로 변경하여 HTML 태그(흰색 텍스트 span)가 적용되도록 함
+            document.getElementById('periodInfo').innerHTML = pText;
         }
         updateTime(); setInterval(updateTime, 1000);
 
