@@ -13,7 +13,6 @@
             --accent-mint: #00D2B4; 
             --accent-gold: #D1B280; 
             --accent-red: #FF6B6B;
-            /* 스포츠 팀별 색상 */
             --lg-color: #90CAF9;
             --nc-color: #FFE082;
             --lotte-color: #FFAB91;
@@ -53,7 +52,6 @@
         .lunch-title { font-size: 0.9rem; color: var(--accent-mint); font-weight: bold; margin-bottom: 5px; }
         .lunch-menu { font-size: 0.95rem; line-height: 1.4; word-break: keep-all; }
 
-        /* 스포츠 전용 스타일 */
         #sportsBoard { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex-grow: 1; padding-right: 5px; }
         .sports-item { background: rgba(255, 255, 255, 0.05); padding: 12px 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .item-lg { border-left: 5px solid var(--lg-color); }
@@ -66,7 +64,6 @@
         .game-time { font-size: 0.85rem; color: var(--text-sub); }
         .game-location { font-size: 0.85rem; color: #888; }
 
-        /* 전달사항 & 디데이 */
         #noticeBoard, #ddayList { flex-grow: 1; overflow-y: auto; padding-right: 5px; }
         .section-title { font-size: 0.95rem; font-weight: bold; color: var(--accent-gold); margin-bottom: 8px; margin-top: 15px; display: flex; align-items: center; gap: 5px; }
         .section-title:first-child { margin-top: 0; }
@@ -94,6 +91,10 @@
         .modal-content { background: var(--card-bg); width: 480px; padding: 30px; border-radius: 12px; border: 1px solid var(--accent-mint); display: flex; flex-direction: column; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .modal-content textarea { width: 100%; height: 160px; background: rgba(0,0,0,0.3); color: #fff; padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: inherit; font-size: 1.1rem; line-height: 1.5; resize: none; outline: none; box-sizing: border-box; }
         .modal-content textarea:focus { border-color: var(--accent-mint); }
+        
+        /* 파일 첨부 버튼 스타일 */
+        input[type="file"]::file-selector-button { background: var(--card-bg); color: var(--accent-gold); border: 1px solid var(--accent-gold); border-radius: 4px; padding: 6px 12px; cursor: pointer; transition: 0.2s; font-weight: bold; }
+        input[type="file"]::file-selector-button:hover { background: var(--accent-gold); color: #000; }
     </style>
 </head>
 <body>
@@ -160,20 +161,26 @@
             <div class="card card-2">
                 <div class="card-header" style="color: var(--accent-gold);">🏫 3학년부 주요 업무 D-Day</div>
                 <div class="period-notifier" id="periodInfo">일과 시간 로딩 중...</div>
-                <div style="display:flex; gap:8px; margin-bottom:15px;">
-                    <input type="text" id="ddayName" placeholder="일정명" style="flex-grow:1; background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:10px; font-size:1rem;">
-                    <input type="date" id="ddayDate" style="background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:10px; color-scheme:dark; font-size:1rem;">
-                    <button onclick="addDday()" style="background:var(--accent-mint); border:none; border-radius:6px; padding:0 18px; cursor:pointer; font-weight:bold; font-size:1rem;">추가</button>
+                
+                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px; background:rgba(0,0,0,0.15); padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <input type="text" id="ddayName" placeholder="일정명" style="flex-grow:1; min-width:150px; background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:8px; font-size:0.95rem;">
+                    <input type="date" id="ddayDate" style="background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:8px; color-scheme:dark; font-size:0.95rem;">
+                    
+                    <div style="display:flex; gap:8px; width:100%; align-items:center; margin-top:5px;">
+                        <input type="file" id="ddayFile" style="flex-grow:1; background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:5px; font-size:0.85rem;">
+                        <button id="addDdayBtn" onclick="addDday()" style="background:var(--accent-mint); border:none; border-radius:6px; padding:8px 18px; cursor:pointer; font-weight:bold; font-size:1rem;">추가</button>
+                    </div>
                 </div>
+                
                 <div id="ddayList"></div>
             </div>
         </div>
     </div>
 
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT1sm-0Qy8PzqNZRY_b1zaMX8Fv2oam4PpteahW62b05gtSSwLrkoyEO-1bhAEcnwyIA/exec"; 
+        // ★ 알려주신 선생님의 새로운 URL 적용 완료!
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzpJTCMBVu6c4VQcgdPBhcjPSyP2jS39oo4jrZorFxMS2TeERemAL-oSO7NEaFePdVUHw/exec"; 
 
-        // ★ 일과 텍스트와 시간 텍스트를 흰색으로 조합해주는 헬퍼 함수
         const formatPeriod = (msg, timeStr) => `${msg} <span style="color: #ffffff; font-size: 0.95em; font-weight: 500; margin-left: 6px;">(${timeStr})</span>`;
 
         function updateTime() {
@@ -193,7 +200,6 @@
             if (day === 0 || day === 6) {
                 pText = "주말입니다. 편안한 휴일 보내세요! 🌿";
             } else if (day === 3) {
-                // 수요일 로직 (시간 텍스트 추가)
                 if (timeVal >= 900 && timeVal < 910) pText = formatPeriod("조회 시간입니다.", "09:00~09:10");
                 else if (timeVal >= 910 && timeVal < 955) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:10~09:55");
                 else if (timeVal >= 955 && timeVal < 1005) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:55~10:05");
@@ -208,7 +214,6 @@
                 else if (timeVal >= 1435 && timeVal < 1520) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:35~15:20");
                 else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             } else if (day === 2 || day === 4) {
-                // 화, 목 로직 (7교시 포함, 시간 텍스트 추가)
                 if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
                 else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
                 else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
@@ -225,7 +230,6 @@
                 else if (timeVal >= 1520 && timeVal < 1605) pText = formatPeriod("현재 7교시 수업 중입니다.", "15:20~16:05");
                 else if (timeVal >= 1605) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             } else if (day === 1 || day === 5) {
-                // 월, 금 로직 (청소시간 포함, 시간 텍스트 추가)
                 if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
                 else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
                 else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
@@ -241,10 +245,19 @@
                 else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
             }
             
-            // ★ innerHTML로 변경하여 HTML 태그(흰색 텍스트 span)가 적용되도록 함
             document.getElementById('periodInfo').innerHTML = pText;
         }
         updateTime(); setInterval(updateTime, 1000);
+
+        let lastSportsUpdateHour = -1;
+        function checkSportsUpdate() {
+            const h = new Date().getHours();
+            if ((h === 6 || h === 12 || h === 18) && lastSportsUpdateHour !== h) {
+                fetchSports();
+                lastSportsUpdateHour = h;
+            }
+        }
+        setInterval(checkSportsUpdate, 60 * 1000); 
 
         async function fetchWeather() {
             try {
@@ -320,7 +333,8 @@
                     }
                     
                     const time = html.split('<br>')[0];
-                    const titleMatch = html.match(/bold; color:#fff">([^<]+)</);
+                    // 정규식 수정: 경기 정보라는 글자가 씹히지 않도록 안전하게 수정
+                    const titleMatch = html.match(/color:#fff['"]>([^<]+)<\/span>/);
                     const title = titleMatch ? titleMatch[1] : "경기 정보";
                     const locs = html.match(/\(([^)]+)\)/g);
                     let loc = "";
@@ -368,9 +382,12 @@
 
                 data.reverse().forEach(i => {
                     const isToday = i.날짜 === today;
+                    // 내용이 비어있어도 오류나지 않게 처리
+                    const content = i.내용 ? String(i.내용).replace(/\n/g,'<br>') : '';
+                    
                     const itemHtml = `<div class="notice-item ${isToday?'today':'past'}">
                         <span class="notice-time">${isToday?'오늘':i.날짜}</span>
-                        <div class="notice-text" id="text-${i.전달ID}">${i.내용.replace(/\n/g,'<br>')}</div>
+                        <div class="notice-text" id="text-${i.전달ID}">${content}</div>
                         <div style="position:absolute; top:12px; right:10px; display:flex; gap:5px;">
                             <button class="action-btn" onclick="openEditModal('${i.전달ID}')">✏️</button>
                             <button class="action-btn" onclick="deleteNotice('${i.전달ID}')" style="color:var(--accent-red);">✕</button>
@@ -404,9 +421,13 @@
                     const dText = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-Day' : `D+${Math.abs(diff)}`);
                     const isTodayClass = diff === 0 ? 'dday-today' : '';
                     
+                    // 파일 첨부 링크 아이콘 설정
+                    const fileIcon = i.파일링크 ? `<a href="${i.파일링크}" target="_blank" style="margin-right:8px; text-decoration:none; font-size:1.2rem; transition:0.2s;" title="양식 다운로드">💾</a>` : '';
+                    
                     return `<div class="d-day-box ${isTodayClass}">
                         <span>${i.일정명} <span style="font-size:0.75rem; color:#888;">(${i.날짜.slice(5)})</span></span>
                         <div style="display:flex; align-items:center;">
+                            ${fileIcon}
                             <span class="accent-text">${dText}</span>
                             <button class="action-btn" style="color:#ccc; margin-left:8px; font-weight:bold;" onclick="deleteDday('${i.ID}')">✕</button>
                         </div>
@@ -446,16 +467,52 @@
         function deleteNotice(id) { if(confirm("정말 삭제하시겠습니까?")) fetch(WEB_APP_URL, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'delete', id:id})}).then(()=>setTimeout(fetchNotices, 2000)); }
         
         function addDday() {
-            const n = document.getElementById('ddayName').value; const d = document.getElementById('ddayDate').value;
-            if(!n || !d) return;
-            fetch(WEB_APP_URL, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'create', type:'dday', name:n, date:d})})
-            .then(()=>{ document.getElementById('ddayName').value=''; document.getElementById('ddayDate').value=''; setTimeout(fetchDdays, 2000); });
+            const n = document.getElementById('ddayName').value;
+            const d = document.getElementById('ddayDate').value;
+            const fileInput = document.getElementById('ddayFile');
+            const btn = document.getElementById('addDdayBtn');
+
+            if(!n || !d) { alert('일정명과 날짜를 입력해주세요!'); return; }
+
+            btn.innerText = "업로드중...";
+            btn.disabled = true;
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Data = e.target.result.split(',')[1];
+                    fetch(WEB_APP_URL, {
+                        method:'POST', mode:'no-cors',
+                        body:JSON.stringify({
+                            action:'create', type:'dday', name:n, date:d,
+                            fileData: base64Data, fileName: file.name, mimeType: file.type
+                        })
+                    }).then(finishAddDday);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                fetch(WEB_APP_URL, {
+                    method:'POST', mode:'no-cors',
+                    body:JSON.stringify({ action:'create', type:'dday', name:n, date:d })
+                }).then(finishAddDday);
+            }
+        }
+        
+        function finishAddDday() {
+            document.getElementById('ddayName').value = '';
+            document.getElementById('ddayDate').value = '';
+            document.getElementById('ddayFile').value = '';
+            const btn = document.getElementById('addDdayBtn');
+            btn.innerText = "추가";
+            btn.disabled = false;
+            setTimeout(fetchDdays, 2000);
         }
         
         function deleteDday(id) { if(confirm("삭제하시겠습니까?")) fetch(WEB_APP_URL, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'delete', type:'dday', id:id})}).then(()=>setTimeout(fetchDdays, 2000)); }
 
         fetchNotices(); fetchDdays();
-        setInterval(fetchNotices, 5*60*1000); setInterval(fetchDdays, 5*60*1000); setInterval(fetchSports, 5*60*1000);
+        setInterval(fetchNotices, 5*60*1000); setInterval(fetchDdays, 5*60*1000); 
     </script>
 </body>
 </html>
