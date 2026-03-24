@@ -216,7 +216,6 @@
 
         body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
         
-        /* 전체 여백 미세 축소 (줌아웃 R1) */
         body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center; overflow: hidden; transition: background-color 0.3s; }
 
         .main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1400px; height: 95vh; min-height: 600px; }
@@ -225,6 +224,7 @@
         
         .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0;}
         .sidebar-title { font-size: 1.05rem; font-weight: bold; color: var(--accent-main); margin: 0;}
+        
         .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.8rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; font-family: inherit;}
         .theme-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
 
@@ -292,7 +292,6 @@
         .d-day-box.archived { border-left: 4px solid var(--dday-archive-border); background: var(--dday-archive-bg); border-color: var(--border-color); }
         .accent-text { color: var(--accent-red); font-weight: bold; margin-right: 10px; }
         
-        /* ★ R2 반별체크 최적화 (flex-wrap으로 박스 넘침 방지) */
         .class-check-wrap { display: flex; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
         .class-btn { width: 22px; height: 22px; border-radius: 50%; border: none; font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; padding: 0; }
         .class-btn.off { background: var(--class-off-bg); color: var(--class-off-text); }
@@ -416,7 +415,7 @@
             <div class="search-container">
                 <input type="text" id="naverSearchInput" class="search-input" placeholder="네이버 검색..." onkeydown="if(event.key==='Enter') searchNaver()">
                 <button class="search-btn" onclick="searchNaver()">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
             </div>
             <div class="menu-divider"></div>
@@ -458,7 +457,11 @@
                 <div class="card-header" style="color: var(--accent-sub);">
                     🏆 스포츠 경기 일정 
                     <button onclick="fetchSports()" class="refresh-btn" title="새로고침">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 0 20.49 15"></path></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
                     </button>
                 </div>
                 <div id="sportsBoard"></div>
@@ -468,7 +471,11 @@
                 <div class="card-header" style="color: var(--accent-main);">
                     📢 3학년부 전달사항 
                     <button onclick="fetchNotices()" class="refresh-btn" title="새로고침">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 0 20.49 15"></path></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
                     </button>
                 </div>
                 <div id="noticeBoard"></div>
@@ -485,7 +492,7 @@
                 <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px; background:var(--notice-past-bg); padding:12px; border-radius:8px; border:1px solid var(--border-color-strong); flex-shrink:0;">
                     <div class="dday-input-row" style="display:flex; gap:8px; align-items:center;">
                         <input type="text" id="ddayName" placeholder="일정명" style="flex-grow:1; border-radius:6px; padding:8px 10px; font-size:0.9rem;">
-                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; font-size:0.9rem; width: 140px; flex-shrink:0;">
+                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; font-size:0.9rem; width: 130px; flex-shrink:0;">
                         <label style="white-space: nowrap; flex-shrink:0; font-size:0.85rem; color:var(--accent-main); display:flex; align-items:center; gap:4px; cursor:pointer; background:var(--check-bg); padding:8px 12px; border-radius:6px; border:1px solid var(--check-border);">
                             <input type="checkbox" id="ddayNeedsCheck" style="margin:0;"> 반별확인
                         </label>
@@ -515,7 +522,7 @@
         const SVG_ARCHIVE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`;
         const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
 
-        // ★ 테마 배열 및 이름/아이콘 설정 (4가지)
+        // ★ 4가지 테마 배열 설정
         const themes = ['dark', 'blossom', 'ocean', 'forest'];
         const themeIcons = { 'dark': '🌙', 'blossom': '🌸', 'ocean': '🌊', 'forest': '🌿' };
         const themeNames = { 'dark': '다크', 'blossom': '벚꽃', 'ocean': '오션', 'forest': '자연' };
@@ -526,7 +533,6 @@
             let currentIndex = themes.indexOf(currentTheme);
             if(currentIndex === -1) currentIndex = 0;
             
-            // 다음 테마로 전환
             let nextIndex = (currentIndex + 1) % themes.length;
             let newTheme = themes[nextIndex];
             
@@ -553,7 +559,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            // 저장된 테마 불러오기 (없으면 다크테마)
             const savedTheme = localStorage.getItem('dashboardTheme') || 'dark';
             const finalTheme = themes.includes(savedTheme) ? savedTheme : 'dark';
             
@@ -805,7 +810,6 @@
         }
 
         async function fetchDdays() {
-            // R3 고정 구조 렌더링
             const activeList = document.getElementById('activeDdayList');
             const archivedContainer = document.getElementById('archivedDdayContainer');
             try {
