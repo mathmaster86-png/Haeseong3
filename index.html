@@ -114,12 +114,12 @@
         /* 🌊 3. 오션 테마 (세련된 네이비 & 블루) */
         /* ========================================= */
         :root[data-theme="ocean"] {
-            --bg-color: #0F172A; /* 딥 네이비 배경 */
-            --card-bg: #1E293B;  /* 부드러운 네이비 카드 */
+            --bg-color: #0F172A; 
+            --card-bg: #1E293B;  
             --text-main: #F8FAFC;
             --text-sub: #94A3B8;
-            --accent-main: #38BDF8; /* 스카이 블루 포인트 */
-            --accent-sub: #FBBF24;  /* 앰버 골드 포인트 */
+            --accent-main: #38BDF8; 
+            --accent-sub: #FBBF24;  
             --accent-red: #FB7185;
             --lg-color: #90CAF9;
             --nc-color: #FFE082;
@@ -166,12 +166,12 @@
         /* 🌿 4. 포레스트 테마 (눈이 편안한 그린) */
         /* ========================================= */
         :root[data-theme="forest"] {
-            --bg-color: #F4F7F4; /* 아주 연한 민트 아이보리 */
+            --bg-color: #F4F7F4; 
             --card-bg: #FFFFFF; 
-            --text-main: #2C3E2D; /* 다크 그린 (가독성) */
+            --text-main: #2C3E2D; 
             --text-sub: #7A8B7B;
-            --accent-main: #4CAF50; /* 싱그러운 초록 */
-            --accent-sub: #E67E22;  /* 부드러운 오렌지 */
+            --accent-main: #4CAF50; 
+            --accent-sub: #E67E22;  
             --accent-red: #E53935;
             --lg-color: #4FC3F7;
             --nc-color: #FFB300;
@@ -216,19 +216,15 @@
 
         body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
         
-        /* 전체 여백 조절 */
+        /* 전체 여백 미세 축소 (줌아웃 R1) */
         body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center; overflow: hidden; transition: background-color 0.3s; }
 
-        /* 컨테이너 갭 15px 축소 */
         .main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1400px; height: 95vh; min-height: 600px; }
         
-        /* 사이드바 크기 및 폰트 10% 축소 */
         .sidebar { width: 210px; background-color: var(--card-bg); border-radius: 16px; padding: 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; border: 1px solid var(--border-color); overflow-y: auto; transition: background-color 0.3s, border-color 0.3s; }
         
         .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0;}
         .sidebar-title { font-size: 1.05rem; font-weight: bold; color: var(--accent-main); margin: 0;}
-        
-        /* 테마 버튼 디자인 */
         .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.8rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; font-family: inherit;}
         .theme-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
 
@@ -250,10 +246,9 @@
 
         .menu-divider { border-top: 1px dashed var(--border-color-strong); margin: 2px 0; flex-shrink: 0; }
 
-        /* 황금비율 3.4 : 6.6 유지 */
+        /* 황금비율 3.4 : 6.6 */
         .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.4fr 6.6fr; gap: 15px; flex-grow: 1; }
         
-        /* 카드 여백 20px 축소 */
         .card { background-color: var(--card-bg); border-radius: 16px; padding: 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; border: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.3s, border-color 0.3s;}
         .card-header { font-size: 1.15rem; font-weight: bold; color: var(--accent-main); margin-bottom: 12px; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 
@@ -262,7 +257,6 @@
         .card-3 { grid-area: 2 / 1 / 3 / 2; } 
         .card-2 { grid-area: 2 / 2 / 3 / 3; } 
 
-        /* 글자 크기 10% 일괄 축소 */
         .date-display { font-size: 1.05rem; color: var(--accent-main); text-align: center; font-weight: bold; letter-spacing: 1px; }
         .time-display { font-size: 3.2rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 6px 0; line-height: 1; }
         .weather-display { font-size: 0.9rem; text-align: center; color: var(--text-main); margin-bottom: 10px; font-weight: 500; }
@@ -270,7 +264,7 @@
         .lunch-title { font-size: 0.85rem; color: var(--accent-main); font-weight: bold; margin-bottom: 4px; }
         .lunch-menu { font-size: 0.85rem; line-height: 1.4; word-break: keep-all; color: var(--text-main); }
 
-        #sportsBoard { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex-grow: 1; padding-right: 5px; }
+        #sportsBoard { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex-grow: 1; padding-right: 5px; min-height: 0; }
         .sports-item { background: var(--box-bg); padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border-color); }
         .item-lg { border-left: 4px solid var(--lg-color); }
         .item-nc { border-left: 4px solid var(--nc-color); }
@@ -282,7 +276,7 @@
         .game-time { font-size: 0.8rem; color: var(--text-sub); }
         .game-location { font-size: 0.8rem; color: var(--text-sub); }
 
-        #noticeBoard, #ddayList { flex-grow: 1; overflow-y: auto; padding-right: 5px; }
+        #noticeBoard { flex-grow: 1; overflow-y: auto; padding-right: 5px; min-height: 0; }
         .section-title { font-size: 0.9rem; font-weight: bold; color: var(--accent-sub); margin-bottom: 6px; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
         .section-title:first-child { margin-top: 0; }
         .section-divider { border-top: 1px dashed var(--border-color-strong); margin: 12px 0 10px 0; }
@@ -293,13 +287,13 @@
         .notice-time { font-size: 0.75rem; color: var(--text-sub); display: block; margin-bottom: 4px; font-weight: bold; }
         .notice-text { font-size: 0.95rem; line-height: 1.5; color: var(--text-main); }
 
-        /* 디데이 박스 10% 축소 */
         .d-day-box { background: var(--box-bg); padding: 12px 14px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; gap: 6px; margin-bottom: 8px; font-size: 1rem; border-left: 3px solid var(--accent-main); border: 1px solid var(--border-color); border-left-width: 4px; transition: all 0.3s; }
         .d-day-box.dday-today { background: var(--dday-today-bg); border-left: 4px solid var(--accent-red); border-color: var(--dday-today-border); }
         .d-day-box.archived { border-left: 4px solid var(--dday-archive-border); background: var(--dday-archive-bg); border-color: var(--border-color); }
         .accent-text { color: var(--accent-red); font-weight: bold; margin-right: 10px; }
         
-        .class-check-wrap { display: flex; gap: 6px; margin-top: 2px; }
+        /* ★ R2 반별체크 최적화 (flex-wrap으로 박스 넘침 방지) */
+        .class-check-wrap { display: flex; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
         .class-btn { width: 22px; height: 22px; border-radius: 50%; border: none; font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; padding: 0; }
         .class-btn.off { background: var(--class-off-bg); color: var(--class-off-text); }
         .class-btn.on { background: var(--accent-main); color: var(--class-on-text); box-shadow: 0 0 6px var(--class-on-shadow); }
@@ -316,11 +310,11 @@
         .refresh-btn:hover { opacity: 1; transform: rotate(180deg); color: var(--accent-main); }
         .d-day-actions { display: flex; align-items: center; flex-shrink: 0;}
         
-        details.archive-section { margin-top: 15px; background: var(--box-bg); border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
+        details.archive-section { margin-top: 10px; background: var(--box-bg); border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
         details.archive-section summary { padding: 10px 15px; cursor: pointer; color: var(--text-sub); font-size: 0.95rem; font-weight: bold; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; }
         details.archive-section summary::-webkit-details-marker { display: none; }
         details.archive-section summary:hover { background: var(--hover-bg); color: var(--text-main); }
-        .archive-content { padding: 12px 15px 15px 15px; }
+        .archive-content { padding: 0 15px 15px 15px; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--border-color-strong); border-radius: 10px; }
@@ -330,17 +324,14 @@
         .modal-content textarea { width: 100%; height: 140px; background: var(--input-bg); color: var(--text-main); padding: 12px; border-radius: 6px; border: 1px solid var(--input-border); font-size: 1rem; line-height: 1.5; resize: none; outline: none; box-sizing: border-box; }
         .modal-content textarea:focus { border-color: var(--accent-main); }
         
-        /* 폼 요소 통일 */
         input[type="text"], input[type="date"] { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); outline: none; }
         input[type="text"]:focus, input[type="date"]:focus { border-color: var(--accent-main); }
         input[type="date"] { color-scheme: var(--color-scheme); }
+        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 1; }
         
         input[type="file"]::file-selector-button { background: var(--input-bg); color: var(--accent-sub); border: 1px solid var(--accent-sub); border-radius: 4px; padding: 4px 8px; cursor: pointer; transition: 0.2s; font-weight: bold; font-size: 0.85rem; margin-right: 8px; }
         input[type="file"]::file-selector-button:hover { background: var(--accent-sub); color: var(--btn-text); }
 
-        /* ========================================================== */
-        /* ★ 모바일 기기 완벽 대응 (화면 폭 900px 이하 스마트폰/태블릿) ★ */
-        /* ========================================================== */
         @media (max-width: 900px) {
             body { padding: 10px; height: auto; overflow-y: auto; display: block; }
             .main-wrapper { height: auto; min-height: auto; display: block; }
@@ -353,7 +344,7 @@
             .card-2 { order: 3; }
             .card-4 { order: 4; }
             
-            #sportsBoard, #noticeBoard, #ddayList { max-height: 350px; overflow-y: auto; }
+            #sportsBoard, #noticeBoard, #activeDdayList { max-height: 350px; overflow-y: auto; }
             .time-display { font-size: 2.8rem; margin: 10px 0; }
             
             .modal-content, #ddayEditModal .modal-content { width: 90% !important; padding: 20px; }
@@ -467,7 +458,7 @@
                 <div class="card-header" style="color: var(--accent-sub);">
                     🏆 스포츠 경기 일정 
                     <button onclick="fetchSports()" class="refresh-btn" title="새로고침">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 0 20.49 15"></path></svg>
                     </button>
                 </div>
                 <div id="sportsBoard"></div>
@@ -477,7 +468,7 @@
                 <div class="card-header" style="color: var(--accent-main);">
                     📢 3학년부 전달사항 
                     <button onclick="fetchNotices()" class="refresh-btn" title="새로고침">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 0 20.49 15"></path></svg>
                     </button>
                 </div>
                 <div id="noticeBoard"></div>
@@ -494,7 +485,7 @@
                 <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px; background:var(--notice-past-bg); padding:12px; border-radius:8px; border:1px solid var(--border-color-strong); flex-shrink:0;">
                     <div class="dday-input-row" style="display:flex; gap:8px; align-items:center;">
                         <input type="text" id="ddayName" placeholder="일정명" style="flex-grow:1; border-radius:6px; padding:8px 10px; font-size:0.9rem;">
-                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; color-scheme:dark; font-size:0.9rem; width: 130px; text-align: center; flex-shrink:0;">
+                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; font-size:0.9rem; width: 140px; flex-shrink:0;">
                         <label style="white-space: nowrap; flex-shrink:0; font-size:0.85rem; color:var(--accent-main); display:flex; align-items:center; gap:4px; cursor:pointer; background:var(--check-bg); padding:8px 12px; border-radius:6px; border:1px solid var(--check-border);">
                             <input type="checkbox" id="ddayNeedsCheck" style="margin:0;"> 반별확인
                         </label>
@@ -506,7 +497,10 @@
                     </div>
                 </div>
                 
-                <div id="ddayList"></div>
+                <div id="ddayList" style="display: flex; flex-direction: column; flex-grow: 1; min-height: 0;">
+                    <div id="activeDdayList" style="overflow-y: auto; flex-grow: 1; min-height: 0; padding-right: 5px;"></div>
+                    <div id="archivedDdayContainer" style="flex-shrink: 0;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -521,7 +515,7 @@
         const SVG_ARCHIVE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`;
         const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
 
-        // ★ 4가지 테마 배열 설정
+        // ★ 테마 배열 및 이름/아이콘 설정 (4가지)
         const themes = ['dark', 'blossom', 'ocean', 'forest'];
         const themeIcons = { 'dark': '🌙', 'blossom': '🌸', 'ocean': '🌊', 'forest': '🌿' };
         const themeNames = { 'dark': '다크', 'blossom': '벚꽃', 'ocean': '오션', 'forest': '자연' };
@@ -811,7 +805,9 @@
         }
 
         async function fetchDdays() {
-            const list = document.getElementById('ddayList');
+            // R3 고정 구조 렌더링
+            const activeList = document.getElementById('activeDdayList');
+            const archivedContainer = document.getElementById('archivedDdayContainer');
             try {
                 const res = await fetch(WEB_APP_URL + "?type=dday&t=" + new Date().getTime());
                 const data = await res.json();
@@ -888,9 +884,12 @@
                     }
                 });
 
-                let finalHtml = activeHtml;
+                if(!activeHtml) activeHtml = '<div style="text-align:center; padding:20px; color:var(--text-sub); font-size:0.9rem;">예정된 업무가 없습니다. 🎉</div>';
+                activeList.innerHTML = activeHtml;
+
+                let finalArchivedHtml = '';
                 if(archiveCount > 0) {
-                    finalHtml += `
+                    finalArchivedHtml = `
                     <details class="archive-section">
                         <summary>🗃️ 완료된 업무 보관함 (${archiveCount}개)</summary>
                         <div class="archive-content">
@@ -898,9 +897,9 @@
                         </div>
                     </details>`;
                 }
-                list.innerHTML = finalHtml;
+                archivedContainer.innerHTML = finalArchivedHtml;
 
-            } catch (e) { list.innerHTML = "디데이 로딩 실패"; }
+            } catch (e) { activeList.innerHTML = "디데이 로딩 실패"; }
         }
 
         function checkEnter(e) { if(e.key==='Enter' && !e.shiftKey) { e.preventDefault(); postNotice(); }}
