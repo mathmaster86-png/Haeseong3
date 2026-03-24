@@ -7,7 +7,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         /* ========================================= */
-        /* 🌙 다크 테마 (기본값) */
+        /* 🌙 1. 다크 테마 (기본값) */
         /* ========================================= */
         :root[data-theme="dark"] {
             --bg-color: #121212; 
@@ -59,7 +59,7 @@
         }
 
         /* ========================================= */
-        /* 🌸 벚꽃 테마 (선택 시 적용) */
+        /* 🌸 2. 벚꽃 테마 */
         /* ========================================= */
         :root[data-theme="blossom"] {
             --bg-color: #FFF0F5; 
@@ -110,9 +110,113 @@
             --color-scheme: light;
         }
 
+        /* ========================================= */
+        /* 🌊 3. 오션 테마 (세련된 네이비 & 블루) */
+        /* ========================================= */
+        :root[data-theme="ocean"] {
+            --bg-color: #0F172A; /* 딥 네이비 배경 */
+            --card-bg: #1E293B;  /* 부드러운 네이비 카드 */
+            --text-main: #F8FAFC;
+            --text-sub: #94A3B8;
+            --accent-main: #38BDF8; /* 스카이 블루 포인트 */
+            --accent-sub: #FBBF24;  /* 앰버 골드 포인트 */
+            --accent-red: #FB7185;
+            --lg-color: #90CAF9;
+            --nc-color: #FFE082;
+            --lotte-color: #FFAB91;
+
+            --input-bg: rgba(15, 23, 42, 0.5);
+            --input-border: rgba(56, 189, 248, 0.2);
+            --border-color: rgba(255,255,255,0.05);
+            --border-color-strong: rgba(56, 189, 248, 0.3);
+            --hover-bg: rgba(56, 189, 248, 0.1);
+            --box-bg: rgba(15, 23, 42, 0.3);
+            --card-shadow: rgba(0, 0, 0, 0.3);
+
+            --notice-today-bg: rgba(56, 189, 248, 0.1);
+            --notice-today-border: var(--accent-main);
+            --notice-past-bg: var(--input-bg);
+            
+            --dday-today-bg: rgba(251, 113, 133, 0.15);
+            --dday-today-border: var(--accent-red);
+            --dday-archive-bg: rgba(0, 0, 0, 0.3);
+            --dday-archive-border: #475569;
+            
+            --class-off-bg: rgba(255,255,255,0.1);
+            --class-off-text: var(--text-sub);
+            --class-on-text: #0F172A;
+            --class-on-shadow: rgba(56, 189, 248, 0.5);
+
+            --period-bg: rgba(251, 191, 36, 0.1);
+            --period-border: rgba(251, 191, 36, 0.3);
+            
+            --check-bg: rgba(56, 189, 248, 0.1);
+            --check-border: rgba(56, 189, 248, 0.3);
+
+            --modal-overlay: rgba(0,0,0,0.7);
+            --modal-shadow: rgba(0,0,0,0.5);
+            --btn-text: #0F172A;
+            --cancel-btn-bg: #334155;
+            --cancel-btn-text: #F8FAFC;
+            
+            --color-scheme: dark;
+        }
+
+        /* ========================================= */
+        /* 🌿 4. 포레스트 테마 (눈이 편안한 그린) */
+        /* ========================================= */
+        :root[data-theme="forest"] {
+            --bg-color: #F4F7F4; /* 아주 연한 민트 아이보리 */
+            --card-bg: #FFFFFF; 
+            --text-main: #2C3E2D; /* 다크 그린 (가독성) */
+            --text-sub: #7A8B7B;
+            --accent-main: #4CAF50; /* 싱그러운 초록 */
+            --accent-sub: #E67E22;  /* 부드러운 오렌지 */
+            --accent-red: #E53935;
+            --lg-color: #4FC3F7;
+            --nc-color: #FFB300;
+            --lotte-color: #FF8A65;
+
+            --input-bg: #F9FCF9;
+            --input-border: #C8E6C9;
+            --border-color: #E8EFE8;
+            --border-color-strong: #A5D6A7;
+            --hover-bg: #E8F5E9;
+            --box-bg: #F4F9F4;
+            --card-shadow: rgba(76, 175, 80, 0.15);
+
+            --notice-today-bg: #E8F5E9;
+            --notice-today-border: var(--accent-main);
+            --notice-past-bg: var(--input-bg);
+            
+            --dday-today-bg: #FFEBEE;
+            --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #F0F0F0;
+            --dday-archive-border: #BDBDBD;
+            
+            --class-off-bg: #E0EBE0;
+            --class-off-text: #7A8B7B;
+            --class-on-text: #ffffff;
+            --class-on-shadow: rgba(76, 175, 80, 0.4);
+
+            --period-bg: #FFF3E0;
+            --period-border: var(--accent-sub);
+            
+            --check-bg: #E8F5E9;
+            --check-border: var(--border-color-strong);
+
+            --modal-overlay: rgba(0,0,0,0.5);
+            --modal-shadow: rgba(76, 175, 80, 0.2);
+            --btn-text: #ffffff;
+            --cancel-btn-bg: #E0EBE0;
+            --cancel-btn-text: var(--text-main);
+            
+            --color-scheme: light;
+        }
+
         body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
         
-        /* 전체 여백 미세 축소 (줌아웃) */
+        /* 전체 여백 조절 */
         body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center; overflow: hidden; transition: background-color 0.3s; }
 
         /* 컨테이너 갭 15px 축소 */
@@ -124,8 +228,8 @@
         .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0;}
         .sidebar-title { font-size: 1.05rem; font-weight: bold; color: var(--accent-main); margin: 0;}
         
-        /* ★ 테마 버튼 디자인 개선 (글씨 포함) */
-        .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.85rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; font-family: inherit;}
+        /* 테마 버튼 디자인 */
+        .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.8rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; font-family: inherit;}
         .theme-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
 
         .search-container { display: flex; gap: 6px; margin-bottom: 6px; flex-shrink: 0; }
@@ -216,7 +320,7 @@
         details.archive-section summary { padding: 10px 15px; cursor: pointer; color: var(--text-sub); font-size: 0.95rem; font-weight: bold; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; }
         details.archive-section summary::-webkit-details-marker { display: none; }
         details.archive-section summary:hover { background: var(--hover-bg); color: var(--text-main); }
-        .archive-content { padding: 0 15px 15px 15px; }
+        .archive-content { padding: 12px 15px 15px 15px; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--border-color-strong); border-radius: 10px; }
@@ -314,7 +418,7 @@
             <div class="sidebar-header-wrap">
                 <div class="sidebar-title">⭐ 바로가기</div>
                 <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeMode()" title="테마 변경">
-                    <span>테마</span> <span id="themeIcon">🌙</span>
+                    <span id="themeText">다크 테마</span> <span id="themeIcon">🌙</span>
                 </button>
             </div>
             
@@ -390,8 +494,8 @@
                 <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px; background:var(--notice-past-bg); padding:12px; border-radius:8px; border:1px solid var(--border-color-strong); flex-shrink:0;">
                     <div class="dday-input-row" style="display:flex; gap:8px; align-items:center;">
                         <input type="text" id="ddayName" placeholder="일정명" style="flex-grow:1; border-radius:6px; padding:8px 10px; font-size:0.9rem;">
-                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; font-size:0.9rem; width: 130px; text-align: center; flex-shrink:0;">
-                        <label style="white-space: nowrap; flex-shrink:0; font-size:0.9rem; color:var(--accent-main); display:flex; align-items:center; gap:4px; cursor:pointer; background:var(--check-bg); padding:8px 10px; border-radius:6px; border:1px solid var(--check-border);">
+                        <input type="date" id="ddayDate" style="border-radius:6px; padding:8px 10px; color-scheme:dark; font-size:0.9rem; width: 130px; text-align: center; flex-shrink:0;">
+                        <label style="white-space: nowrap; flex-shrink:0; font-size:0.85rem; color:var(--accent-main); display:flex; align-items:center; gap:4px; cursor:pointer; background:var(--check-bg); padding:8px 12px; border-radius:6px; border:1px solid var(--check-border);">
                             <input type="checkbox" id="ddayNeedsCheck" style="margin:0;"> 반별확인
                         </label>
                     </div>
@@ -417,13 +521,26 @@
         const SVG_ARCHIVE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`;
         const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
 
+        // ★ 4가지 테마 배열 설정
+        const themes = ['dark', 'blossom', 'ocean', 'forest'];
+        const themeIcons = { 'dark': '🌙', 'blossom': '🌸', 'ocean': '🌊', 'forest': '🌿' };
+        const themeNames = { 'dark': '다크', 'blossom': '벚꽃', 'ocean': '오션', 'forest': '자연' };
+
         function toggleThemeMode() {
             const root = document.documentElement;
-            const currentTheme = root.getAttribute('data-theme') || 'dark';
-            const newTheme = currentTheme === 'blossom' ? 'dark' : 'blossom';
+            let currentTheme = root.getAttribute('data-theme') || 'dark';
+            let currentIndex = themes.indexOf(currentTheme);
+            if(currentIndex === -1) currentIndex = 0;
+            
+            // 다음 테마로 전환
+            let nextIndex = (currentIndex + 1) % themes.length;
+            let newTheme = themes[nextIndex];
+            
             root.setAttribute('data-theme', newTheme);
             localStorage.setItem('dashboardTheme', newTheme);
-            document.getElementById('themeIcon').textContent = newTheme === 'blossom' ? '🌸' : '🌙';
+            
+            document.getElementById('themeIcon').textContent = themeIcons[newTheme];
+            document.getElementById('themeText').textContent = themeNames[newTheme] + ' 테마';
         }
 
         function searchNaver() {
@@ -442,9 +559,13 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            // 저장된 테마 불러오기 (없으면 다크테마)
             const savedTheme = localStorage.getItem('dashboardTheme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeIcon').textContent = savedTheme === 'blossom' ? '🌸' : '🌙';
+            const finalTheme = themes.includes(savedTheme) ? savedTheme : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', finalTheme);
+            document.getElementById('themeIcon').textContent = themeIcons[finalTheme];
+            document.getElementById('themeText').textContent = themeNames[finalTheme] + ' 테마';
             
             document.getElementById('ddayDate').value = getTodayString();
         });
