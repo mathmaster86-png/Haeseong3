@@ -125,7 +125,7 @@
         
         .card { background-color: var(--card-bg); border-radius: 16px; padding: 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; border: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.3s, border-color 0.3s;}
         
-        /* ★ 학년 탭 버튼 스타일 추가 */
+        /* 학년 탭 버튼 */
         .grade-selector { display: flex; background: var(--input-bg); border-radius: 8px; padding: 3px; border: 1px solid var(--input-border); }
         .grade-btn { background: transparent; color: var(--text-sub); border: none; padding: 5px 12px; font-size: 0.85rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; }
         .grade-btn:hover { color: var(--text-main); }
@@ -194,7 +194,9 @@
         details.archive-section summary { padding: 10px 15px; cursor: pointer; color: var(--text-sub); font-size: 0.95rem; font-weight: bold; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; }
         details.archive-section summary::-webkit-details-marker { display: none; }
         details.archive-section summary:hover { background: var(--hover-bg); color: var(--text-main); }
-        .archive-content { padding: 0 15px 15px 15px; }
+        
+        /* ★ 보관함 스크롤 기능 추가 (max-height와 overflow-y) */
+        .archive-content { padding: 0 15px 15px 15px; max-height: 200px; overflow-y: auto; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--border-color-strong); border-radius: 10px; }
@@ -402,24 +404,24 @@
     </div>
 
     <script>
-        // ★ 1, 2, 3학년부 데이터 통합 관리 객체
+        // 1, 2, 3학년부 데이터 통합 관리
         const gradeConfig = {
             '1': {
                 url: "https://script.google.com/macros/s/AKfycbwCfyq_ZL1VHQaJJZ_Mk641RH8kyZ08e2CrwzmJEhkqGZDcrhtyeXD4DB5vjKZZG51n/exec",
                 name: "1학년부",
                 classCount: 8,
-                shortcutText: "3학년 진학희망 고교"
+                shortcutText: "1학년 관련 링크"
             },
             '2': {
                 url: "https://script.google.com/macros/s/AKfycbwYL0i-vPrpCn98T3m-FCPQ5_cHp8ejlO29VCWJ4BsaRpX7VbfVnU0yUPZjXW_yiaIk/exec",
                 name: "2학년부",
                 classCount: 8,
-                shortcutText: "3학년 진학희망 고교"
+                shortcutText: "2학년 관련 링크"
             },
             '3': {
                 url: "https://script.google.com/macros/s/AKfycbzpJTCMBVu6c4VQcgdPBhcjPSyP2jS39oo4jrZorFxMS2TeERemAL-oSO7NEaFePdVUHw/exec",
                 name: "3학년부",
-                classCount: 7, // 3학년은 7반까지
+                classCount: 7, 
                 shortcutText: "3학년 진학희망 고교"
             }
         };
@@ -451,26 +453,23 @@
             document.getElementById('themeText').textContent = themeNames[newTheme] + ' 테마';
         }
 
-        // ★ 학년 변경 기능 핵심
+        // 학년 변경 기능
         function changeGrade(grade) {
             currentGrade = grade;
             localStorage.setItem('dashboardGrade', grade);
             const conf = gradeConfig[grade];
 
-            // 1. 학년 버튼 스타일 변경 (색칠)
             document.querySelectorAll('.grade-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.dataset.grade === grade) btn.classList.add('active');
             });
 
-            // 2. 화면의 텍스트(타이틀, 바로가기 이름 등) 학년에 맞게 자동 교체
             document.title = `해성중 ${conf.name} 대시보드`;
             document.getElementById('pageTitle').innerText = `해성중 ${conf.name} 대시보드`;
             document.getElementById('noticeTitleText').innerText = `📢 ${conf.name} 전달사항`;
             document.getElementById('ddayTitleText').innerText = `🏫 ${conf.name} 주요 업무 D-Day`;
             document.getElementById('shortcutGradeText').innerText = conf.shortcutText;
 
-            // 3. 로딩 메시지 표시 후 해당 학년 데이터만 새로 불러오기
             document.getElementById('noticeBoard').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
             document.getElementById('activeDdayList').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
             document.getElementById('archivedDdayContainer').innerHTML = '';
@@ -577,7 +576,7 @@
         function checkSportsUpdate() {
             const h = new Date().getHours();
             if ((h === 6 || h === 12 || h === 18) && lastSportsUpdateHour !== h) {
-                // 스포츠 일정은 공통 서버 통신 (3학년부 URL 이용)
+                // 스포츠 일정은 공통 서버 통신
                 fetchSports();
                 lastSportsUpdateHour = h;
             }
@@ -635,7 +634,6 @@
             const board = document.getElementById('sportsBoard');
             board.innerHTML = '<div style="text-align:center; color:var(--text-sub); padding:20px;">일정 로딩중...</div>';
             try {
-                // 스포츠는 공통이므로 3학년부 DB를 빌려 씁니다.
                 const res = await fetch(gradeConfig['3'].url + "?type=sports&t=" + new Date().getTime());
                 const data = await res.json();
                 
@@ -658,7 +656,6 @@
         }
         fetchSports();
 
-        // ★ 데이터를 불러올 땐 항상 '선택된 학년'의 URL을 사용합니다.
         async function fetchNotices() {
             const board = document.getElementById('noticeBoard');
             try {
@@ -730,7 +727,6 @@
                         try {
                             const checks = JSON.parse(i.반별체크);
                             let btns = '';
-                            // ★ 선택된 학년의 반 개수만큼 그리기 (8반 or 7반)
                             for (let c = 0; c < gradeConfig[currentGrade].classCount; c++) {
                                 const isOn = checks[c] === 1;
                                 const btnClass = isOn ? 'on' : 'off';
@@ -771,11 +767,6 @@
             const val = document.getElementById('editModalInput').value.trim(); if(!val) return;
             fetch(gradeConfig[currentGrade].url, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'update', id:currentEditId, text:val})})
             .then(()=>{ closeEditModal(); setTimeout(fetchNotices, 2000); });
-        }
-
-        // 반별 체크 빈 배열 자동 생성 (1학년은 8개, 3학년은 7개)
-        function getEmptyCheckArrayStr() {
-            return "[" + Array(gradeConfig[currentGrade].classCount).fill(0).join(",") + "]";
         }
 
         function addDday() {
@@ -868,10 +859,6 @@
         function deleteDday(id) { if(confirm("해당 D-Day를 영구 삭제하시겠습니까?")) fetch(gradeConfig[currentGrade].url, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'delete', type:'dday', id:id})}).then(()=>setTimeout(fetchDdays, 2000)); }
         function deleteNotice(id) { if(confirm("정말 삭제하시겠습니까?")) fetch(gradeConfig[currentGrade].url, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'delete', id:id})}).then(()=>setTimeout(fetchNotices, 2000)); }
 
-        // 초기 실행은 changeGrade() 안에서 처리되므로 주석 처리
-        // fetchNotices(); fetchDdays();
-        
-        // 5분마다 현재 선택된 학년의 데이터 자동 갱신
         setInterval(() => { fetchNotices(); fetchDdays(); }, 5*60*1000); 
     </script>
 </body>
