@@ -7,7 +7,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         /* ========================================= */
-        /* 🌙 1. 다크 테마 (기본값) */
+        /* 🌙 1. 다크 테마 (기본값 - 세련된 블랙) */
         /* ========================================= */
         :root[data-theme="dark"] {
             --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #ffffff; --text-sub: #b3b3b3;
@@ -28,7 +28,7 @@
         }
 
         /* ========================================= */
-        /* 🌸 2. 벚꽃 테마 */
+        /* 🌸 2. 벚꽃 테마 (화사한 핑크) */
         /* ========================================= */
         :root[data-theme="blossom"] {
             --bg-color: #FFF0F5; --card-bg: #FFFFFF; --text-main: #4A3B3C; --text-sub: #8B7D7E;
@@ -49,28 +49,49 @@
         }
 
         /* ========================================= */
-        /* 🌊 3. 오션 테마 */
+        /* ☁️ 3. 스카이 테마 [NEW] (밝고 산뜻한 블루) */
         /* ========================================= */
-        :root[data-theme="ocean"] {
-            --bg-color: #0F172A; --card-bg: #1E293B; --text-main: #F8FAFC; --text-sub: #94A3B8;
-            --accent-main: #38BDF8; --accent-sub: #FBBF24; --accent-red: #FB7185;
-            --lg-color: #90CAF9; --nc-color: #FFE082; --lotte-color: #FFAB91;
-            --input-bg: rgba(15, 23, 42, 0.5); --input-border: rgba(56, 189, 248, 0.2);
-            --border-color: rgba(255,255,255,0.05); --border-color-strong: rgba(56, 189, 248, 0.3);
-            --hover-bg: rgba(56, 189, 248, 0.1); --box-bg: rgba(15, 23, 42, 0.3); --card-shadow: rgba(0, 0, 0, 0.3);
-            --notice-today-bg: rgba(56, 189, 248, 0.1); --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
-            --dday-today-bg: rgba(251, 113, 133, 0.15); --dday-today-border: var(--accent-red);
-            --dday-archive-bg: rgba(0, 0, 0, 0.3); --dday-archive-border: #475569;
-            --class-off-bg: rgba(255,255,255,0.1); --class-off-text: var(--text-sub);
-            --class-on-text: #0F172A; --class-on-shadow: rgba(56, 189, 248, 0.5);
-            --period-bg: rgba(251, 191, 36, 0.1); --period-border: rgba(251, 191, 36, 0.3);
-            --check-bg: rgba(56, 189, 248, 0.1); --check-border: rgba(56, 189, 248, 0.3);
-            --modal-overlay: rgba(0,0,0,0.7); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #0F172A;
-            --cancel-btn-bg: #334155; --cancel-btn-text: #F8FAFC; --color-scheme: dark;
+        :root[data-theme="sky"] {
+            --bg-color: #F0F8FF; --card-bg: #FFFFFF; --text-main: #1E293B; --text-sub: #64748B;
+            --accent-main: #0EA5E9; --accent-sub: #F59E0B; --accent-red: #EF4444;
+            --lg-color: #38BDF8; --nc-color: #FBBF24; --lotte-color: #F87171;
+            --input-bg: #F8FAFC; --input-border: #E2E8F0;
+            --border-color: #E2E8F0; --border-color-strong: #CBD5E1;
+            --hover-bg: #F1F5F9; --box-bg: #F8FAFC; --card-shadow: rgba(14, 165, 233, 0.1);
+            --notice-today-bg: #E0F2FE; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
+            --dday-today-bg: #FEE2E2; --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #F1F5F9; --dday-archive-border: #94A3B8;
+            --class-off-bg: #E2E8F0; --class-off-text: #64748B;
+            --class-on-text: #ffffff; --class-on-shadow: rgba(14, 165, 233, 0.4);
+            --period-bg: #FEF3C7; --period-border: var(--accent-sub);
+            --check-bg: #E0F2FE; --check-border: #BAE6FD;
+            --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(14, 165, 233, 0.2); --btn-text: #ffffff;
+            --cancel-btn-bg: #E2E8F0; --cancel-btn-text: var(--text-main); --color-scheme: light;
         }
 
         /* ========================================= */
-        /* 🌿 4. 포레스트 테마 */
+        /* 💻 4. 모던 테마 [NEW] (단정하고 깔끔한 차콜) */
+        /* ========================================= */
+        :root[data-theme="modern"] {
+            --bg-color: #202124; --card-bg: #2D2E31; --text-main: #E8EAED; --text-sub: #9AA0A6;
+            --accent-main: #8AB4F8; --accent-sub: #FDE293; --accent-red: #F28B82;
+            --lg-color: #8AB4F8; --nc-color: #FDE293; --lotte-color: #F28B82;
+            --input-bg: #202124; --input-border: #5F6368;
+            --border-color: #3C4043; --border-color-strong: #5F6368;
+            --hover-bg: #3C4043; --box-bg: #303134; --card-shadow: rgba(0, 0, 0, 0.4);
+            --notice-today-bg: rgba(138, 180, 248, 0.15); --notice-today-border: var(--accent-main); --notice-past-bg: var(--bg-color);
+            --dday-today-bg: rgba(242, 139, 130, 0.15); --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #202124; --dday-archive-border: #5F6368;
+            --class-off-bg: #3C4043; --class-off-text: var(--text-sub);
+            --class-on-text: #202124; --class-on-shadow: rgba(138, 180, 248, 0.5);
+            --period-bg: rgba(253, 226, 147, 0.1); --period-border: var(--accent-sub);
+            --check-bg: rgba(138, 180, 248, 0.1); --check-border: rgba(138, 180, 248, 0.3);
+            --modal-overlay: rgba(0,0,0,0.7); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #202124;
+            --cancel-btn-bg: #5F6368; --cancel-btn-text: var(--text-main); --color-scheme: dark;
+        }
+
+        /* ========================================= */
+        /* 🌿 5. 포레스트 테마 (눈이 편안한 아이보리&그린) */
         /* ========================================= */
         :root[data-theme="forest"] {
             --bg-color: #F4F7F4; --card-bg: #FFFFFF; --text-main: #2C3E2D; --text-sub: #7A8B7B;
@@ -91,6 +112,7 @@
         }
 
         body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
+        
         body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center; overflow: hidden; transition: background-color 0.3s; }
 
         .main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1400px; height: 95vh; min-height: 600px; }
@@ -125,7 +147,6 @@
         
         .card { background-color: var(--card-bg); border-radius: 16px; padding: 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; border: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.3s, border-color 0.3s;}
         
-        /* 학년 탭 버튼 */
         .grade-selector { display: flex; background: var(--input-bg); border-radius: 8px; padding: 3px; border: 1px solid var(--input-border); }
         .grade-btn { background: transparent; color: var(--text-sub); border: none; padding: 5px 12px; font-size: 0.85rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; }
         .grade-btn:hover { color: var(--text-main); }
@@ -195,7 +216,6 @@
         details.archive-section summary::-webkit-details-marker { display: none; }
         details.archive-section summary:hover { background: var(--hover-bg); color: var(--text-main); }
         
-        /* ★ 보관함 스크롤 기능 추가 (max-height와 overflow-y) */
         .archive-content { padding: 0 15px 15px 15px; max-height: 200px; overflow-y: auto; }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -310,7 +330,7 @@
             <div class="menu-divider"></div>
             <a href="http://seastar-m.gne.go.kr" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🏫</span> 해성중학교</a>
             
-            <a href="https://joo.is/고등학교희망" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🎓</span> <span id="shortcutGradeText">3학년 진학희망 고교</span></a>
+            <a href="https://joo.is/고등학교희망" target="_blank" class="shortcut-btn group-2" id="dynamicShortcutLink"><span class="shortcut-icon">🎓</span> <span id="shortcutGradeText">3학년 진학희망 고교</span></a>
             <a href="https://joo.is/해성중정보화기기" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">🛠️</span> 정보기기 수리접수</a>
             <a href="https://joo.is/해성중업무" target="_blank" class="shortcut-btn group-2"><span class="shortcut-icon">📑</span> 해성중 업무시트</a>
             <div class="menu-divider"></div>
@@ -404,46 +424,54 @@
     </div>
 
     <script>
-        // 1, 2, 3학년부 데이터 통합 관리
+        // ★ 1, 2, 3학년부 데이터 통합 관리
         const gradeConfig = {
             '1': {
                 url: "https://script.google.com/macros/s/AKfycbwCfyq_ZL1VHQaJJZ_Mk641RH8kyZ08e2CrwzmJEhkqGZDcrhtyeXD4DB5vjKZZG51n/exec",
                 name: "1학년부",
                 classCount: 8,
-                shortcutText: "1학년 관련 링크"
+                shortcutText: "1학년 관련 링크",
+                shortcutUrl: "https://1학년주소넣기.com" // ★ 여기에 1학년 링크 주소를 넣어주세요
             },
             '2': {
                 url: "https://script.google.com/macros/s/AKfycbwYL0i-vPrpCn98T3m-FCPQ5_cHp8ejlO29VCWJ4BsaRpX7VbfVnU0yUPZjXW_yiaIk/exec",
                 name: "2학년부",
                 classCount: 8,
-                shortcutText: "2학년 관련 링크"
+                shortcutText: "2학년 관련 링크",
+                shortcutUrl: "https://2학년주소넣기.com" // ★ 여기에 2학년 링크 주소를 넣어주세요
             },
             '3': {
                 url: "https://script.google.com/macros/s/AKfycbzpJTCMBVu6c4VQcgdPBhcjPSyP2jS39oo4jrZorFxMS2TeERemAL-oSO7NEaFePdVUHw/exec",
                 name: "3학년부",
                 classCount: 7, 
-                shortcutText: "3학년 진학희망 고교"
+                shortcutText: "3학년 진학희망 고교",
+                shortcutUrl: "https://joo.is/고등학교희망" 
             }
         };
 
         // 기본값은 3학년, 이전에 저장된 기록이 있다면 불러오기
         let currentGrade = localStorage.getItem('dashboardGrade') || '3';
 
-        const SVG_GLOBE = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`;
+        const SVG_GLOBE = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>`;
         const SVG_DOWNLOAD = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#81C784" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
         const SVG_EDIT = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`;
         const SVG_DELETE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>`;
         const SVG_ARCHIVE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`;
         const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
 
-        const themes = ['dark', 'blossom', 'ocean', 'forest'];
-        const themeIcons = { 'dark': '🌙', 'blossom': '🌸', 'ocean': '🌊', 'forest': '🌿' };
-        const themeNames = { 'dark': '다크', 'blossom': '벚꽃', 'ocean': '오션', 'forest': '자연' };
+        // ★ 5가지 테마 배열 및 이름/아이콘 설정
+        const themes = ['dark', 'blossom', 'sky', 'modern', 'forest'];
+        const themeIcons = { 'dark': '🌙', 'blossom': '🌸', 'sky': '☁️', 'modern': '💻', 'forest': '🌿' };
+        const themeNames = { 'dark': '다크', 'blossom': '벚꽃', 'sky': '스카이', 'modern': '모던', 'forest': '자연' };
 
         function toggleThemeMode() {
             const root = document.documentElement;
-            let theme = root.getAttribute('data-theme') || 'dark';
-            let nextIndex = (themes.indexOf(theme) + 1) % themes.length;
+            let currentTheme = root.getAttribute('data-theme') || 'dark';
+            let currentIndex = themes.indexOf(currentTheme);
+            if(currentIndex === -1) currentIndex = 0;
+            
+            // 다음 테마로 전환
+            let nextIndex = (currentIndex + 1) % themes.length;
             let newTheme = themes[nextIndex];
             
             root.setAttribute('data-theme', newTheme);
@@ -459,21 +487,28 @@
             localStorage.setItem('dashboardGrade', grade);
             const conf = gradeConfig[grade];
 
+            // 1. 탭 버튼 스타일 변경
             document.querySelectorAll('.grade-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.dataset.grade === grade) btn.classList.add('active');
             });
 
+            // 2. 화면 텍스트 및 주소(URL) 변경
             document.title = `해성중 ${conf.name} 대시보드`;
             document.getElementById('pageTitle').innerText = `해성중 ${conf.name} 대시보드`;
             document.getElementById('noticeTitleText').innerText = `📢 ${conf.name} 전달사항`;
             document.getElementById('ddayTitleText').innerText = `🏫 ${conf.name} 주요 업무 D-Day`;
+            
+            // 학년별 링크 텍스트와 주소 동시 변경
             document.getElementById('shortcutGradeText').innerText = conf.shortcutText;
+            document.getElementById('dynamicShortcutLink').href = conf.shortcutUrl;
 
+            // 3. 로딩 상태 표시
             document.getElementById('noticeBoard').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
             document.getElementById('activeDdayList').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
             document.getElementById('archivedDdayContainer').innerHTML = '';
             
+            // 4. 새로운 데이터 호출
             fetchNotices();
             fetchDdays();
         }
@@ -492,8 +527,10 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            // 저장된 테마 불러오기 (없으면 다크테마)
             const savedTheme = localStorage.getItem('dashboardTheme') || 'dark';
             const finalTheme = themes.includes(savedTheme) ? savedTheme : 'dark';
+            
             document.documentElement.setAttribute('data-theme', finalTheme);
             document.getElementById('themeIcon').textContent = themeIcons[finalTheme];
             document.getElementById('themeText').textContent = themeNames[finalTheme] + ' 테마';
@@ -576,7 +613,6 @@
         function checkSportsUpdate() {
             const h = new Date().getHours();
             if ((h === 6 || h === 12 || h === 18) && lastSportsUpdateHour !== h) {
-                // 스포츠 일정은 공통 서버 통신
                 fetchSports();
                 lastSportsUpdateHour = h;
             }
