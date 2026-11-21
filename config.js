@@ -9,7 +9,7 @@
  */
 window.DASHBOARD_ENV = {
     // ▼ 설정 전용 Google Apps Script 웹앱 URL(/exec)을 붙여넣으세요. (비워두면 로컬 테스트 모드)
-    CONFIG_APPS_SCRIPT_URL: ""
+    CONFIG_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwvt76t0uC2y63GinEDfvl84wYWu5RsHPT8GzSoH0_Td9-zHPZCaoUwC1FKQg9dHItu-Q/exec"
 };
 
 window.DEFAULT_CONFIG = {
