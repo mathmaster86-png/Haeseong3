@@ -11,6 +11,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" />
     <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" />
+    <script src="./config.js"></script>
     <style>
         @font-face {
             font-family: 'GmarketSans';
@@ -46,8 +47,7 @@
             --accent-main: #00D2B4; --accent-sub: #D1B280; --accent-red: #FF6B6B;
             --input-bg: rgba(0,0,0,0.25); --input-border: rgba(255,255,255,0.12);
             --border-color: rgba(255,255,255,0.06); --border-color-strong: rgba(255,255,255,0.12);
-            --hover-bg: rgba(255, 255, 255, 0.05); --selected-bg: rgba(0, 210, 180, 0.14);
-            --box-bg: rgba(0, 0, 0, 0.22); --card-shadow: rgba(0, 0, 0, 0.3);
+            --hover-bg: rgba(255, 255, 255, 0.05); --box-bg: rgba(0, 0, 0, 0.22); --card-shadow: rgba(0, 0, 0, 0.3);
             --notice-today-bg: rgba(0, 210, 180, 0.1); --notice-today-border: rgba(0, 210, 180, 0.3); --notice-past-bg: rgba(0, 0, 0, 0.15);
             --dday-today-bg: rgba(255, 107, 107, 0.12); --dday-today-border: var(--accent-red);
             --dday-archive-bg: rgba(0, 0, 0, 0.3); --dday-archive-border: #555;
@@ -67,8 +67,7 @@
             --accent-main: #FF8FAB; --accent-sub: #E07A3F; --accent-red: #FF5252;
             --input-bg: #FFF9FA; --input-border: #FFD1DC;
             --border-color: #FFD1DC; --border-color-strong: #FFB6C1;
-            --hover-bg: #FFE4EB; --selected-bg: #FFF0F5;
-            --box-bg: #FFF9FA; --card-shadow: rgba(255, 182, 193, 0.25);
+            --hover-bg: #FFE4EB; --box-bg: #FFF9FA; --card-shadow: rgba(255, 182, 193, 0.25);
             --notice-today-bg: #FFF0F5; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
             --dday-today-bg: #FFF0F5; --dday-today-border: var(--accent-red);
             --dday-archive-bg: #F5F5F5; --dday-archive-border: #BDBDBD;
@@ -88,8 +87,7 @@
             --accent-main: #0EA5E9; --accent-sub: #D97706; --accent-red: #EF4444;
             --input-bg: #F8FAFC; --input-border: #E2E8F0;
             --border-color: #E2E8F0; --border-color-strong: #CBD5E1;
-            --hover-bg: #F1F5F9; --selected-bg: #E0F2FE;
-            --box-bg: #F8FAFC; --card-shadow: rgba(14, 165, 233, 0.1);
+            --hover-bg: #F1F5F9; --box-bg: #F8FAFC; --card-shadow: rgba(14, 165, 233, 0.1);
             --notice-today-bg: #E0F2FE; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
             --dday-today-bg: #FEE2E2; --dday-today-border: var(--accent-red);
             --dday-archive-bg: #F1F5F9; --dday-archive-border: #94A3B8;
@@ -109,8 +107,7 @@
             --accent-main: #8AB4F8; --accent-sub: #FDE293; --accent-red: #F28B82;
             --input-bg: #202124; --input-border: #5F6368;
             --border-color: #3C4043; --border-color-strong: #5F6368;
-            --hover-bg: #3C4043; --selected-bg: rgba(138, 180, 248, 0.16);
-            --box-bg: #303134; --card-shadow: rgba(0, 0, 0, 0.4);
+            --hover-bg: #3C4043; --box-bg: #303134; --card-shadow: rgba(0, 0, 0, 0.4);
             --notice-today-bg: rgba(138, 180, 248, 0.15); --notice-today-border: var(--accent-main); --notice-past-bg: var(--bg-color);
             --dday-today-bg: rgba(242, 139, 130, 0.15); --dday-today-border: var(--accent-red);
             --dday-archive-bg: #202124; --dday-archive-border: #5F6368;
@@ -130,8 +127,7 @@
             --accent-main: #4CAF50; --accent-sub: #E67E22; --accent-red: #E53935;
             --input-bg: #F9FCF9; --input-border: #C8E6C9;
             --border-color: #E8EFE8; --border-color-strong: #A5D6A7;
-            --hover-bg: #E8F5E9; --selected-bg: #E8F5E9;
-            --box-bg: #F4F9F4; --card-shadow: rgba(76, 175, 80, 0.15);
+            --hover-bg: #E8F5E9; --box-bg: #F4F9F4; --card-shadow: rgba(76, 175, 80, 0.15);
             --notice-today-bg: #E8F5E9; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
             --dday-today-bg: #FFEBEE; --dday-today-border: var(--accent-red);
             --dday-archive-bg: #F0F0F0; --dday-archive-border: #BDBDBD;
@@ -152,15 +148,14 @@
         .mobile-header-title { font-weight: bold; color: var(--accent-main); font-size: 1.05rem; }
         .hamburger-btn { background: transparent; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; padding: 5px; display: flex; align-items: center; }
 
-        .sidebar { width: 224px; background-color: var(--card-bg); border-radius: 16px; padding: 18px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; border: 1px solid var(--border-color); overflow-y: auto; transition: background-color 0.3s, border-color 0.3s, left 0.3s ease; }
+        .sidebar { width: 222px; background-color: var(--card-bg); border-radius: 16px; padding: 18px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; border: 1px solid var(--border-color); overflow-y: auto; transition: background-color 0.3s, border-color 0.3s, left 0.3s ease; }
         .sidebar-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; }
 
-        .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0; gap: 4px; }
-        .sidebar-title { font-size: 1rem; font-weight: bold; color: var(--accent-main); margin: 0; white-space: nowrap; }
-        .sidebar-tools { display: flex; align-items: center; gap: 4px; }
+        .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0; }
+        .sidebar-title { font-size: 1.02rem; font-weight: bold; color: var(--accent-main); margin: 0; }
 
-        .theme-toggle-btn, .font-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.76rem; font-weight: bold; border-radius: 20px; padding: 4px 8px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
-        .theme-toggle-btn:hover, .font-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
+        .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.78rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+        .theme-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
 
         .search-container { display: flex; gap: 6px; margin-bottom: 4px; flex-shrink: 0; }
         .search-input { flex-grow: 1; background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; outline: none; width: 100%; box-sizing: border-box; transition: border-color 0.2s; }
@@ -169,8 +164,10 @@
         .search-btn { background: var(--accent-main); color: var(--btn-text); border: none; border-radius: 8px; padding: 0 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; flex-shrink: 0; }
         .search-btn:hover { transform: scale(1.05); }
 
+        #sidebarLinks { display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
         .shortcut-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--hover-bg); border-radius: 8px; text-decoration: none; color: inherit; font-weight: bold; font-size: 0.89rem; transition: all 0.2s ease; flex-shrink: 0; border: 1px solid transparent; }
         .shortcut-icon { font-size: 1.02rem; flex-shrink: 0; }
+        .shortcut-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .shortcut-btn.group-1 { color: var(--group1-color); }
         .shortcut-btn.group-2 { color: var(--group2-color); }
         .shortcut-btn.group-3 { color: var(--group3-color); }
@@ -178,6 +175,16 @@
         .shortcut-btn:hover { background: var(--input-bg); border-color: var(--border-color-strong); transform: translateY(-2px); }
 
         .menu-divider { border-top: 1px dashed var(--border-color-strong); margin: 2px 0; flex-shrink: 0; }
+
+        /* 사이드바 맨 아래 작은 관리자 아이콘 버튼 */
+        .sidebar-footer { margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+        .admin-icon-link {
+            width: 30px; height: 30px; border-radius: 8px;
+            display: inline-flex; align-items: center; justify-content: center;
+            text-decoration: none; color: var(--text-sub); background: transparent;
+            border: 1px solid transparent; opacity: 0.55; transition: all 0.2s ease;
+        }
+        .admin-icon-link:hover { opacity: 1; color: var(--accent-main); background: var(--hover-bg); border-color: var(--border-color-strong); transform: rotate(30deg); }
 
         .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.4fr 6.6fr; gap: 15px; flex-grow: 1; min-width: 0; }
         .card { background-color: var(--card-bg); border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; border: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.3s, border-color 0.3s; min-width: 0; }
@@ -324,23 +331,6 @@
         }
         .icon-clear-btn:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
-        /* 폰트 선택 모달 카드 */
-        .font-card-list { display: flex; flex-direction: column; gap: 8px; }
-        .font-card {
-            display: flex; flex-direction: column; gap: 5px; text-align: left; width: 100%;
-            background: var(--hover-bg); border: 2px solid var(--border-color); border-radius: 10px;
-            padding: 11px 13px; cursor: pointer; transition: 0.18s; color: var(--text-main);
-        }
-        .font-card:hover { border-color: var(--accent-main); }
-        .font-card.selected { border-color: var(--accent-main); background: var(--selected-bg); }
-        .font-card-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
-        .font-card-name { font-size: 0.9rem; font-weight: 700; color: var(--accent-main); }
-        .font-card-check { font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--accent-main); color: var(--btn-text); display: none; }
-        .font-card.selected .font-card-check { display: inline-block; }
-        .font-card-desc { font-size: 0.76rem; color: var(--text-sub); }
-        .font-card-sample { font-size: 0.92rem; color: var(--text-main); padding-top: 4px; border-top: 1px dashed var(--border-color-strong); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-        .font-card-sample-num { font-weight: 700; color: var(--accent-sub); font-variant-numeric: tabular-nums; }
-
         input[type="text"]:not(.edit-input):not(.checklist-input), input[type="date"] { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); outline: none; }
         input[type="text"]:not(.edit-input):not(.checklist-input):focus, input[type="date"]:focus { border-color: var(--accent-main); }
         input[type="date"] { color-scheme: var(--color-scheme); }
@@ -392,17 +382,6 @@
     <div id="toast">알림 메시지</div>
 
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
-
-    <!-- 폰트 선택 팝업 -->
-    <div id="fontModal" class="icon-picker-modal" onclick="if(event.target===this) closeFontModal()">
-        <div class="icon-picker-card" style="border-color: var(--accent-main); width: 470px;">
-            <div class="icon-picker-header">
-                <h3 style="color: var(--accent-main);">🔤 대시보드 폰트 선택</h3>
-                <button type="button" class="icon-clear-btn" onclick="closeFontModal()">닫기</button>
-            </div>
-            <div id="fontCardList" class="font-card-list"></div>
-        </div>
-    </div>
 
     <!-- D-Day 아이콘 선택 팝업 -->
     <div id="ddayIconPickerModal" class="icon-picker-modal" onclick="if(event.target===this) closeDdayIconPicker()">
@@ -479,15 +458,12 @@
     </div>
 
     <div class="main-wrapper">
-        <div class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header-wrap">
                 <div class="sidebar-title">⭐ 바로가기</div>
-                <div class="sidebar-tools">
-                    <button type="button" id="fontToggleBtn" class="font-toggle-btn" onclick="openFontModal()" title="폰트 변경">🔤</button>
-                    <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeMode()" title="테마 변경">
-                        <span id="themeText">다크</span> <span id="themeIcon">🌙</span>
-                    </button>
-                </div>
+                <button type="button" id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeMode()" title="테마 변경">
+                    <span id="themeText">다크 테마</span> <span id="themeIcon">🌙</span>
+                </button>
             </div>
 
             <div class="search-container">
@@ -498,31 +474,24 @@
             </div>
             <div class="menu-divider"></div>
 
-            <a href="https://gne.eduptl.kr/bpm_lgn_lg00_001.do?noEpSession" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-1"><span class="shortcut-icon">🏢</span> 업무포털 (경남)</a>
-            <a href="https://newtab.itt.link/v3/index.do" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-1"><span class="shortcut-icon">💬</span> 아이톡톡</a>
-            <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-1"><span class="shortcut-icon">🟩</span> 네이버</a>
-            <a href="https://schoolbell-e.com/ko/main/home" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-1"><span class="shortcut-icon">🔍</span> 학교종이</a>
-            <div class="menu-divider"></div>
-            <a href="http://seastar-m.gne.go.kr" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-2"><span class="shortcut-icon">🏫</span> 해성중학교</a>
+            <!-- 공통 + 학년별 바로가기 동적 렌더링 영역 -->
+            <div id="sidebarLinks"></div>
 
-            <a href="https://joo.is/고등학교희망" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-2" id="dynamicShortcutLink"><span class="shortcut-icon">🎓</span> <span id="shortcutGradeText">3학년 진학희망 고교</span></a>
-            <a href="https://joo.is/해성중정보화기기" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-2"><span class="shortcut-icon">🛠️</span> 정보기기 수리접수</a>
-            <a href="https://joo.is/해성중업무" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-2"><span class="shortcut-icon">📑</span> 해성중 업무시트</a>
-            <div class="menu-divider"></div>
-            <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-3"><span class="shortcut-icon">🤖</span> ChatGPT</a>
-            <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-3"><span class="shortcut-icon">✨</span> 제미나이</a>
-            <a href="https://ieumai.com/" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-3"><span class="shortcut-icon">🧮</span> 이음AI</a>
-            <a href="https://www.miricanvas.com/" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-3"><span class="shortcut-icon">🎨</span> 미리캔버스</a>
-            <div class="menu-divider"></div>
-            <a href="https://www.gneti.or.kr" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-4"><span class="shortcut-icon">📚</span> 경남교육연수</a>
-            <a href="https://www.gnlec.kr/" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-4"><span class="shortcut-icon">💻</span> 온라인 전달연수</a>
-            <a href="https://joo.is/고등학교어디가" target="_blank" rel="noopener noreferrer" class="shortcut-btn group-4" style="margin-top: auto;"><span class="shortcut-icon">🔗</span> 고등학교 어디가!</a>
-        </div>
+            <!-- 사이드바 맨 아래 작은 관리자 아이콘 버튼 -->
+            <div class="sidebar-footer">
+                <a href="./admin.html" class="admin-icon-link" title="관리자 설정" aria-label="관리자 설정">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </a>
+            </div>
+        </aside>
 
-        <div class="dashboard-container">
-            <div class="card card-1">
+        <main class="dashboard-container">
+            <section class="card card-1">
                 <div class="card-header" style="color: var(--accent-main); display: flex; align-items: center; justify-content: space-between;">
-                    <span>🏫 해성중학교</span>
+                    <span id="card1Title">🏫 해성중학교</span>
                     <div class="grade-selector">
                         <button type="button" class="grade-btn" data-grade="1" onclick="changeGrade('1')">1학년</button>
                         <button type="button" class="grade-btn" data-grade="2" onclick="changeGrade('2')">2학년</button>
@@ -534,13 +503,13 @@
                     <div class="time-display" id="currentTime">00:00:00</div>
                     <div class="weather-display" id="weatherInfo">☁️ 날씨 정보 로딩중...</div>
                     <div class="lunch-box">
-                        <div class="lunch-title">🍽️ 해성중학교 오늘의 급식</div>
+                        <div class="lunch-title" id="lunchBoxTitle">🍽️ 해성중학교 오늘의 급식</div>
                         <div id="lunchMenu" class="lunch-menu">급식 정보 로딩중...</div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card card-4" style="padding: 15px;">
+            <section class="card card-4" style="padding: 15px;">
                 <div class="memo-container">
                     <div class="post-it pink">
                         <div class="post-it-title">✅ 체크리스트 <span style="font-size:0.74rem; color:rgba(0,0,0,0.5); font-weight:normal;">(자동 저장)</span></div>
@@ -556,9 +525,9 @@
                         <textarea id="privateMemo" placeholder="자유롭게 메모하세요..."></textarea>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card card-3">
+            <section class="card card-3">
                 <div class="card-header" style="color: var(--accent-main);">
                     <span id="noticeTitleText">📢 3학년부 전달사항</span>
                     <div class="card-header-actions">
@@ -577,9 +546,9 @@
                     <textarea id="noticeInput" placeholder="새로운 전달사항 (Enter: 전송 / Shift+Enter: 줄바꿈)" style="flex-grow:1; background:var(--input-bg); color:var(--text-main); border:1px solid var(--input-border); border-radius:6px; padding:10px; font-size:0.94rem; box-sizing:border-box; resize:none; height:54px;" onkeydown="checkEnter(event)"></textarea>
                     <button type="button" id="postNoticeBtn" onclick="postNotice()" style="background:var(--accent-main); color:var(--btn-text); border:none; border-radius:6px; padding:0 16px; cursor:pointer; font-weight:bold; font-size:0.94rem; flex-shrink:0;">등록</button>
                 </div>
-            </div>
+            </section>
 
-            <div class="card card-2">
+            <section class="card card-2">
                 <div class="card-header" style="color: var(--accent-sub);">
                     <span id="ddayTitleText">📅 3학년부 주요 업무 D-Day</span>
                     <div class="card-header-actions">
@@ -596,72 +565,25 @@
                     <div id="activeDdayList" style="overflow-y: auto; flex-grow: 1; min-height: 0; padding-right: 5px;"></div>
                     <div id="archivedDdayContainer" style="flex-shrink: 0;"></div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
     <script>
         // =========================================
-        // 0. 학년별 설정 (기존 해성중 Apps Script 3개 유지)
+        // 0. 전역 상태 & 폰트/아이콘 프리셋
         // =========================================
-        const gradeConfig = {
-            '1': {
-                url: "https://script.google.com/macros/s/AKfycbwCfyq_ZL1VHQaJJZ_Mk641RH8kyZ08e2CrwzmJEhkqGZDcrhtyeXD4DB5vjKZZG51n/exec",
-                name: "1학년부",
-                classCount: 8,
-                shortcutText: "1학년 명렬표",
-                shortcutUrl: "https://docs.google.com/spreadsheets/d/1dNWRvp0ke75YH6fXN-1xJFhPZe2ZFS2eh9QwMOcMbIc/edit?gid=0#gid=0"
-            },
-            '2': {
-                url: "https://script.google.com/macros/s/AKfycbwYL0i-vPrpCn98T3m-FCPQ5_cHp8ejlO29VCWJ4BsaRpX7VbfVnU0yUPZjXW_yiaIk/exec",
-                name: "2학년부",
-                classCount: 8,
-                shortcutText: "2학년 관련 링크",
-                shortcutUrl: "https://2학년주소넣기.com"
-            },
-            '3': {
-                url: "https://script.google.com/macros/s/AKfycbzpJTCMBVu6c4VQcgdPBhcjPSyP2jS39oo4jrZorFxMS2TeERemAL-oSO7NEaFePdVUHw/exec",
-                name: "3학년부",
-                classCount: 7,
-                shortcutText: "3학년 진학희망 고교",
-                shortcutUrl: "https://joo.is/고등학교희망"
-            }
-        };
+        const CONFIG_CACHE_KEY = 'haeseong_dashboard_config_cache';
+        const CONFIG_API_URL = (window.DASHBOARD_ENV && window.DASHBOARD_ENV.CONFIG_APPS_SCRIPT_URL || '').trim();
 
         const DEFAULT_FONT_KEY = 'nanumround';
-        const FONT_OPTIONS = [
-            {
-                key: 'nanumround',
-                name: '나눔스퀘어라운드',
-                desc: '부드럽고 예쁘면서 가독성 최고 · 학교 인기 1위 [추천]',
-                stack: "'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif"
-            },
-            {
-                key: 'gmarket',
-                name: '지마켓 산스 (Gmarket Sans)',
-                desc: '산뜻하고 세련된 기하학적 느낌 · 대시보드 인기 폰트',
-                stack: "'GmarketSans', 'Pretendard', 'Malgun Gothic', sans-serif"
-            },
-            {
-                key: 'spoqa',
-                name: '스포카 한 산스 네오',
-                desc: '깔끔한 UI 전용 폰트 · 시계/D-Day 숫자 가독성 우수',
-                stack: "'Spoqa Han Sans Neo', 'Pretendard', 'Malgun Gothic', sans-serif"
-            },
-            {
-                key: 'ibm',
-                name: 'IBM Plex Sans KR',
-                desc: '또렷하고 스마트한 현대적 고딕 · 장시간 눈이 편안함',
-                stack: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif"
-            },
-            {
-                key: 'pretendard',
-                name: '프리텐다드 (Pretendard)',
-                desc: '국내 웹·앱에서 가장 대중적인 최신 표준 고딕',
-                stack: "'Pretendard', 'Malgun Gothic', sans-serif"
-            }
-        ];
-        const FONT_PRESETS = Object.fromEntries(FONT_OPTIONS.map(f => [f.key, f.stack]));
+        const FONT_PRESETS = {
+            nanumround: "'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif",
+            gmarket: "'GmarketSans', 'Pretendard', 'Malgun Gothic', sans-serif",
+            spoqa: "'Spoqa Han Sans Neo', 'Pretendard', 'Malgun Gothic', sans-serif",
+            ibm: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif",
+            pretendard: "'Pretendard', 'Malgun Gothic', sans-serif"
+        };
 
         const DDAY_ICON_CATEGORIES = [
             { name: '📌 중요 · 마감 · 체크', icons: ['📌', '❗', '🔥', '⭐', '⏰', '🚨', '✅', '🎯'] },
@@ -670,8 +592,10 @@
             { name: '💼 행정 · 공문 · 생활', icons: ['💼', '📁', '📧', '💰', '🍽️', '🧹', '🌸', '☀️'] }
         ];
 
+        let appConfig = mergeConfig(window.DEFAULT_CONFIG, safeJsonParse(localStorage.getItem(CONFIG_CACHE_KEY), null));
         const savedGradeRaw = localStorage.getItem('dashboardGrade');
-        let currentGrade = gradeConfig[savedGradeRaw] ? savedGradeRaw : '3';
+        let currentGrade = (appConfig.grades && appConfig.grades[savedGradeRaw]) ? savedGradeRaw : '3';
+
         let noticeMap = new Map();
         let ddayMap = new Map();
         let isPostingNotice = false;
@@ -685,7 +609,7 @@
         const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
 
         // =========================================
-        // 1. 공통 유틸리티 (XSS·따옴표·URL·날짜 방어)
+        // 1. 공통 유틸리티
         // =========================================
         function safeJsonParse(str, fallback) {
             if (!str) return fallback;
@@ -747,6 +671,37 @@
             return { icon: '', name: str };
         }
 
+        function mergeConfig(base, override) {
+            const merged = JSON.parse(JSON.stringify(base || {}));
+            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
+            if (!override || typeof override !== 'object') return merged;
+
+            for (const key of Object.keys(override)) {
+                if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
+                    merged.schedule = Object.assign({}, merged.schedule, override.schedule);
+                    if (override.schedule.dayOverrides) {
+                        merged.schedule.dayOverrides = Object.assign({}, merged.schedule.dayOverrides, override.schedule.dayOverrides);
+                    }
+                } else if (key === 'grades' && override.grades && typeof override.grades === 'object') {
+                    merged.grades = merged.grades || {};
+                    ['1', '2', '3'].forEach(g => {
+                        if (override.grades[g]) {
+                            merged.grades[g] = Object.assign({}, merged.grades[g] || {}, override.grades[g]);
+                        }
+                    });
+                } else if (override[key] !== undefined && override[key] !== null) {
+                    merged[key] = override[key];
+                }
+            }
+            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
+            return merged;
+        }
+
+        function getCurrentGradeConf() {
+            const grades = appConfig.grades || window.DEFAULT_CONFIG.grades;
+            return grades[currentGrade] || grades['3'];
+        }
+
         let toastTimer = null;
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
@@ -758,7 +713,7 @@
         }
 
         // =========================================
-        // 2. 사이드바 / 테마 / 폰트 선택 / 학년 전환
+        // 2. 원격 설정 로딩 & UI 반영 (폰트 일괄 통일, 공통+학년별 사이드바)
         // =========================================
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
@@ -774,7 +729,7 @@
             document.documentElement.setAttribute('data-theme', valid);
             localStorage.setItem('dashboardTheme', valid);
             document.getElementById('themeIcon').textContent = themeIcons[valid];
-            document.getElementById('themeText').textContent = themeNames[valid];
+            document.getElementById('themeText').textContent = themeNames[valid] + ' 테마';
         }
 
         function toggleThemeMode() {
@@ -786,66 +741,123 @@
         function applyFont(fontKey) {
             const valid = FONT_PRESETS[fontKey] ? fontKey : DEFAULT_FONT_KEY;
             document.documentElement.style.setProperty('--app-font', FONT_PRESETS[valid]);
-            localStorage.setItem('dashboardFont', valid);
         }
 
-        function renderFontCards() {
-            const list = document.getElementById('fontCardList');
-            const currentKey = localStorage.getItem('dashboardFont') || DEFAULT_FONT_KEY;
-            const activeKey = FONT_PRESETS[currentKey] ? currentKey : DEFAULT_FONT_KEY;
-            list.innerHTML = '';
+        function applyConfigToUI() {
+            const schoolFull = appConfig.schoolName || '해성중학교';
+            const shortSchool = schoolFull.replace('학교', '');
+            const conf = getCurrentGradeConf();
 
-            FONT_OPTIONS.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = `font-card ${opt.key === activeKey ? 'selected' : ''}`;
-                btn.onclick = () => {
-                    applyFont(opt.key);
-                    renderFontCards();
-                    showToast(`'${opt.name}' 폰트가 적용되었습니다.`);
-                };
-                btn.innerHTML = `
-                    <div class="font-card-top">
-                        <span class="font-card-name">${opt.name}</span>
-                        <span class="font-card-check">✓ 사용 중</span>
-                    </div>
-                    <div class="font-card-desc">${opt.desc}</div>
-                    <div class="font-card-sample" style="font-family: ${opt.stack};">
-                        <span>🏫 해성중학교 전달사항 · 📌 수행평가 마감</span>
-                        <span class="font-card-sample-num">09:00 · D-7</span>
-                    </div>
-                `;
-                list.appendChild(btn);
-            });
-        }
+            // 관리자가 지정한 폰트로 일괄 적용
+            applyFont(appConfig.fontFamily || DEFAULT_FONT_KEY);
 
-        function openFontModal() {
-            renderFontCards();
-            document.getElementById('fontModal').classList.add('open');
-        }
-
-        function closeFontModal() {
-            document.getElementById('fontModal').classList.remove('open');
-        }
-
-        function changeGrade(grade) {
-            if (!gradeConfig[grade]) grade = '3';
-            currentGrade = grade;
-            localStorage.setItem('dashboardGrade', grade);
-            const conf = gradeConfig[grade];
-
-            document.querySelectorAll('.grade-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.grade === grade);
-            });
-
-            document.title = `해성중 ${conf.name} 대시보드`;
-            document.getElementById('pageTitle').textContent = `해성중 ${conf.name} 대시보드`;
-            document.getElementById('mobilePageTitle').textContent = `해성중 ${conf.name} 대시보드`;
+            document.title = `${shortSchool} ${conf.name} 대시보드`;
+            document.getElementById('pageTitle').textContent = `${shortSchool} ${conf.name} 대시보드`;
+            document.getElementById('mobilePageTitle').textContent = `${shortSchool} ${conf.name} 대시보드`;
+            document.getElementById('card1Title').textContent = `🏫 ${schoolFull}`;
+            document.getElementById('lunchBoxTitle').textContent = `🍽️ ${schoolFull} 오늘의 급식`;
             document.getElementById('noticeTitleText').textContent = `📢 ${conf.name} 전달사항`;
             document.getElementById('ddayTitleText').textContent = `📅 ${conf.name} 주요 업무 D-Day`;
 
-            document.getElementById('shortcutGradeText').textContent = conf.shortcutText;
-            document.getElementById('dynamicShortcutLink').href = conf.shortcutUrl;
+            document.querySelectorAll('.grade-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.grade === currentGrade);
+            });
+
+            renderSidebarShortcuts();
+            updateTime();
+        }
+
+        function createShortcutAnchor(item, groupNum) {
+            const safeHref = normalizeUrl(item.url);
+            const a = document.createElement('a');
+            a.className = `shortcut-btn group-${Math.min(4, Math.max(1, Number(groupNum) || 1))}`;
+            a.href = safeHref || '#';
+            if (safeHref) {
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+            } else {
+                a.onclick = (e) => { e.preventDefault(); showToast('유효한 링크가 설정되지 않았습니다.', true); };
+            }
+
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'shortcut-icon';
+            iconSpan.textContent = item.icon || '🔗';
+
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'shortcut-label';
+            labelSpan.textContent = item.title || '바로가기';
+            labelSpan.title = item.title || '';
+
+            a.appendChild(iconSpan);
+            a.appendChild(labelSpan);
+            return a;
+        }
+
+        function renderSidebarShortcuts() {
+            const container = document.getElementById('sidebarLinks');
+            container.innerHTML = '';
+
+            const commonItems = Array.isArray(appConfig.shortcuts) ? appConfig.shortcuts : [];
+            const conf = getCurrentGradeConf();
+            const gradeShortcuts = Array.isArray(conf.shortcuts) ? conf.shortcuts : [];
+
+            // 그룹 2의 첫 항목(예: 해성중학교) 바로 뒤에 학년별 맞춤 링크를 자연스럽게 끼워넣어 기존 동선 유지
+            const combined = [];
+            let insertedGradeLinks = false;
+
+            commonItems.forEach((item, idx) => {
+                const grp = Number(item.group) || 1;
+                combined.push({ ...item, group: grp });
+                if (!insertedGradeLinks && grp === 2) {
+                    gradeShortcuts.forEach(gs => combined.push({ ...gs, group: 2 }));
+                    insertedGradeLinks = true;
+                }
+            });
+            if (!insertedGradeLinks && gradeShortcuts.length > 0) {
+                gradeShortcuts.forEach(gs => combined.push({ ...gs, group: 2 }));
+            }
+
+            let prevGroup = null;
+            combined.forEach(item => {
+                if (prevGroup !== null && prevGroup !== item.group) {
+                    const div = document.createElement('div');
+                    div.className = 'menu-divider';
+                    container.appendChild(div);
+                }
+                prevGroup = item.group;
+                container.appendChild(createShortcutAnchor(item, item.group));
+            });
+        }
+
+        async function loadRemoteConfig() {
+            if (!CONFIG_API_URL) {
+                const cached = safeJsonParse(localStorage.getItem(CONFIG_CACHE_KEY), null);
+                appConfig = mergeConfig(window.DEFAULT_CONFIG, cached);
+                applyConfigToUI();
+                return;
+            }
+            try {
+                const url = new URL(CONFIG_API_URL);
+                url.searchParams.set('type', 'config');
+                url.searchParams.set('t', String(Date.now()));
+                const res = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (data && data.ok !== false && data.config && Object.keys(data.config).length > 0) {
+                    appConfig = mergeConfig(window.DEFAULT_CONFIG, data.config);
+                    localStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify(data.config));
+                    applyConfigToUI();
+                }
+            } catch (e) {
+                console.warn('원격 설정 로딩 실패(캐시/기본값 사용):', e);
+            }
+        }
+
+        function changeGrade(grade) {
+            if (!appConfig.grades || !appConfig.grades[grade]) grade = '3';
+            currentGrade = grade;
+            localStorage.setItem('dashboardGrade', grade);
+            applyConfigToUI();
 
             document.getElementById('noticeBoard').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
             document.getElementById('activeDdayList').innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">데이터를 불러오는 중...</div>';
@@ -866,7 +878,7 @@
         }
 
         // =========================================
-        // 3. 포스트잇 체크리스트 (XSS·한글 IME·고착 버그 수정)
+        // 3. 포스트잇 체크리스트 (기존 개인 데이터 키 유지)
         // =========================================
         let checklistData = safeJsonParse(localStorage.getItem('dashboardChecklist'), []);
         if (!Array.isArray(checklistData)) checklistData = [];
@@ -991,9 +1003,24 @@
         }
 
         // =========================================
-        // 4. 시계 & 해성중 일과표 + 자정 자동 갱신
+        // 4. 시계 & 동적 일과표 + 자정 자동 갱신
         // =========================================
-        const formatPeriod = (msg, timeStr) => `${msg} <span style="font-size: 0.92em; font-weight: 500; margin-left: 6px; color: var(--text-sub);">(${timeStr})</span>`;
+        function timeToMinutes(hhmm) {
+            const m = String(hhmm || '').match(/^(\d{1,2}):(\d{2})$/);
+            if (!m) return -1;
+            return Number(m[1]) * 60 + Number(m[2]);
+        }
+
+        function getTodayScheduleSlots(dayOfWeek) {
+            const sched = appConfig.schedule || window.DEFAULT_CONFIG.schedule;
+            const override = sched.dayOverrides && sched.dayOverrides[String(dayOfWeek)];
+            if (Array.isArray(override) && override.length > 0) return override;
+            return Array.isArray(sched.defaultWeekday) ? sched.defaultWeekday : [];
+        }
+
+        function formatPeriodHtml(label, timeStr) {
+            return `${escapeHtml(label)} <span style="font-size: 0.92em; font-weight: 500; margin-left: 6px; color: var(--text-sub);">(${escapeHtml(timeStr)})</span>`;
+        }
 
         function updateTime() {
             const now = new Date();
@@ -1005,7 +1032,6 @@
             const s = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('currentTime').textContent = `${h}:${m}:${s}`;
 
-            // 자정 경과 시 날씨·급식·전달사항·D-Day 자동 갱신
             const todayKey = getTodayString();
             if (todayKey !== lastDateKey) {
                 lastDateKey = todayKey;
@@ -1015,59 +1041,43 @@
                 fetchDdays();
             }
 
-            const timeVal = parseInt(h + m, 10);
             const day = now.getDay();
-            let pText = "현재 수업 외 시간입니다.";
+            const sched = appConfig.schedule || window.DEFAULT_CONFIG.schedule;
+            const periodEl = document.getElementById('periodInfo');
 
             if (day === 0 || day === 6) {
-                pText = "주말입니다. 편안한 휴일 보내세요! 🌿";
-            } else if (day === 3) {
-                if (timeVal >= 900 && timeVal < 910) pText = formatPeriod("조회 시간입니다.", "09:00~09:10");
-                else if (timeVal >= 910 && timeVal < 955) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:10~09:55");
-                else if (timeVal >= 955 && timeVal < 1005) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:55~10:05");
-                else if (timeVal >= 1005 && timeVal < 1050) pText = formatPeriod("현재 2교시 수업 중입니다.", "10:05~10:50");
-                else if (timeVal >= 1050 && timeVal < 1100) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:50~11:00");
-                else if (timeVal >= 1100 && timeVal < 1145) pText = formatPeriod("현재 3교시 수업 중입니다.", "11:00~11:45");
-                else if (timeVal >= 1145 && timeVal < 1155) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:45~11:55");
-                else if (timeVal >= 1155 && timeVal < 1240) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:55~12:40");
-                else if (timeVal >= 1240 && timeVal < 1340) pText = formatPeriod("점심 시간입니다. 🍱", "12:40~13:40");
-                else if (timeVal >= 1340 && timeVal < 1425) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:40~14:25");
-                else if (timeVal >= 1425 && timeVal < 1435) pText = formatPeriod("지금은 쉬는 시간입니다.", "14:25~14:35");
-                else if (timeVal >= 1435 && timeVal < 1520) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:35~15:20");
-                else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
-            } else if (day === 2 || day === 4) {
-                if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
-                else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
-                else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
-                else if (timeVal >= 955 && timeVal < 1040) pText = formatPeriod("현재 2교시 수업 중입니다.", "09:55~10:40");
-                else if (timeVal >= 1040 && timeVal < 1050) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:40~10:50");
-                else if (timeVal >= 1050 && timeVal < 1135) pText = formatPeriod("현재 3교시 수업 중입니다.", "10:50~11:35");
-                else if (timeVal >= 1135 && timeVal < 1145) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:35~11:45");
-                else if (timeVal >= 1145 && timeVal < 1230) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:45~12:30");
-                else if (timeVal >= 1230 && timeVal < 1330) pText = formatPeriod("점심 시간입니다. 🍱", "12:30~13:30");
-                else if (timeVal >= 1330 && timeVal < 1415) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:30~14:15");
-                else if (timeVal >= 1415 && timeVal < 1425) pText = formatPeriod("지금은 쉬는 시간입니다.", "14:15~14:25");
-                else if (timeVal >= 1425 && timeVal < 1510) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:25~15:10");
-                else if (timeVal >= 1510 && timeVal < 1520) pText = formatPeriod("지금은 쉬는 시간입니다.", "15:10~15:20");
-                else if (timeVal >= 1520 && timeVal < 1605) pText = formatPeriod("현재 7교시 수업 중입니다.", "15:20~16:05");
-                else if (timeVal >= 1605) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
-            } else if (day === 1 || day === 5) {
-                if (timeVal >= 850 && timeVal < 900) pText = formatPeriod("조회 시간입니다.", "08:50~09:00");
-                else if (timeVal >= 900 && timeVal < 945) pText = formatPeriod("현재 1교시 수업 중입니다.", "09:00~09:45");
-                else if (timeVal >= 945 && timeVal < 955) pText = formatPeriod("지금은 쉬는 시간입니다.", "09:45~09:55");
-                else if (timeVal >= 955 && timeVal < 1040) pText = formatPeriod("현재 2교시 수업 중입니다.", "09:55~10:40");
-                else if (timeVal >= 1040 && timeVal < 1050) pText = formatPeriod("지금은 쉬는 시간입니다.", "10:40~10:50");
-                else if (timeVal >= 1050 && timeVal < 1135) pText = formatPeriod("현재 3교시 수업 중입니다.", "10:50~11:35");
-                else if (timeVal >= 1135 && timeVal < 1145) pText = formatPeriod("지금은 쉬는 시간입니다.", "11:35~11:45");
-                else if (timeVal >= 1145 && timeVal < 1230) pText = formatPeriod("현재 4교시 수업 중입니다.", "11:45~12:30");
-                else if (timeVal >= 1230 && timeVal < 1330) pText = formatPeriod("점심 시간입니다. 🍱", "12:30~13:30");
-                else if (timeVal >= 1330 && timeVal < 1415) pText = formatPeriod("현재 5교시 수업 중입니다.", "13:30~14:15");
-                else if (timeVal >= 1415 && timeVal < 1435) pText = formatPeriod("지금은 청소 시간입니다. 🧹", "14:15~14:35");
-                else if (timeVal >= 1435 && timeVal < 1520) pText = formatPeriod("현재 6교시 수업 중입니다.", "14:35~15:20");
-                else if (timeVal >= 1520) pText = "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
+                periodEl.textContent = sched.weekendMessage || "주말입니다. 편안한 휴일 보내세요! 🌿";
+                return;
             }
 
-            document.getElementById('periodInfo').innerHTML = pText;
+            const slots = getTodayScheduleSlots(day)
+                .map(slot => ({
+                    start: slot.start,
+                    end: slot.end,
+                    label: slot.label,
+                    sMin: timeToMinutes(slot.start),
+                    eMin: timeToMinutes(slot.end)
+                }))
+                .filter(slot => slot.sMin >= 0 && slot.eMin > slot.sMin)
+                .sort((a, b) => a.sMin - b.sMin);
+
+            if (slots.length === 0) {
+                periodEl.textContent = "등록된 일과표가 없습니다.";
+                return;
+            }
+
+            const curMin = now.getHours() * 60 + now.getMinutes();
+            const active = slots.find(slot => curMin >= slot.sMin && curMin < slot.eMin);
+
+            if (active) {
+                periodEl.innerHTML = formatPeriodHtml(active.label, `${active.start}~${active.end}`);
+            } else if (curMin < slots[0].sMin) {
+                periodEl.textContent = sched.beforeMessage || "현재 수업 외 시간입니다.";
+            } else if (curMin >= slots[slots.length - 1].eMin) {
+                periodEl.textContent = sched.afterMessage || "모든 일과가 종료되었습니다. 고생하셨습니다! 👏";
+            } else {
+                periodEl.textContent = "현재 수업 외 시간입니다.";
+            }
         }
 
         // =========================================
@@ -1075,7 +1085,10 @@
         // =========================================
         async function fetchWeather() {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=34.8806&longitude=128.6211&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul`);
+                const lat = appConfig.weatherLat ?? 34.8806;
+                const lon = appConfig.weatherLon ?? 128.6211;
+                const label = appConfig.weatherLabel || '거제 날씨';
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul`);
                 const data = await res.json();
                 const getIcon = (code) => {
                     if (code === 0) return "☀️";
@@ -1093,7 +1106,7 @@
                 const tmrwMin = Math.round(data.daily.temperature_2m_min[1]);
 
                 document.getElementById('weatherInfo').innerHTML =
-                    `거제 날씨: ${getIcon(currentCode)} ${currentTemp}°C <span style="font-size:0.82rem; color:var(--text-sub);">(최고 ${todayMax}°/최저 ${todayMin}°)</span> <span style="margin:0 8px; color:var(--text-sub);">|</span> <span style="font-size:0.85rem; color:var(--text-sub);">내일: ${getIcon(tmrwCode)} ${tmrwMax}° / ${tmrwMin}°</span>`;
+                    `${escapeHtml(label)}: ${getIcon(currentCode)} ${currentTemp}°C <span style="font-size:0.82rem; color:var(--text-sub);">(최고 ${todayMax}°/최저 ${todayMin}°)</span> <span style="margin:0 8px; color:var(--text-sub);">|</span> <span style="font-size:0.85rem; color:var(--text-sub);">내일: ${getIcon(tmrwCode)} ${tmrwMax}° / ${tmrwMin}°</span>`;
             } catch (e) {
                 document.getElementById('weatherInfo').textContent = "날씨 로딩 실패";
             }
@@ -1101,19 +1114,26 @@
 
         async function fetchLunchMenu() {
             try {
-                let schoolCode = localStorage.getItem('haeseong_neis_code');
+                const office = appConfig.neisOfficeCode || 'S10';
+                const schoolName = appConfig.schoolName || '해성중학교';
+                const addrKeyword = (appConfig.neisAddressKeyword || '거제').trim();
+                const cacheKey = `${office}::${schoolName}::${addrKeyword}`;
+                const cached = safeJsonParse(localStorage.getItem('haeseong_neis_code_v2'), null);
+
+                let schoolCode = (cached && cached.key === cacheKey) ? cached.code : '';
                 if (!schoolCode) {
-                    const schoolRes = await fetch('https://open.neis.go.kr/hub/schoolInfo?Type=json&ATPT_OFCDC_SC_CODE=S10&SCHUL_NM=해성중학교');
+                    const schoolRes = await fetch(`https://open.neis.go.kr/hub/schoolInfo?Type=json&ATPT_OFCDC_SC_CODE=${encodeURIComponent(office)}&SCHUL_NM=${encodeURIComponent(schoolName)}`);
                     const schoolData = await schoolRes.json();
-                    const geojeSchool = (schoolData?.schoolInfo?.[1]?.row || []).find(s => String(s.ORG_RDNMA || '').includes('거제'));
-                    if (!geojeSchool) throw new Error('학교코드 조회 실패');
-                    schoolCode = geojeSchool.SD_SCHUL_CODE;
-                    localStorage.setItem('haeseong_neis_code', schoolCode);
+                    const rows = schoolData?.schoolInfo?.[1]?.row || [];
+                    const matched = (addrKeyword ? rows.find(s => String(s.ORG_RDNMA || '').includes(addrKeyword)) : null) || rows[0];
+                    if (!matched || !matched.SD_SCHUL_CODE) throw new Error('학교코드 조회 실패');
+                    schoolCode = matched.SD_SCHUL_CODE;
+                    localStorage.setItem('haeseong_neis_code_v2', JSON.stringify({ key: cacheKey, code: schoolCode }));
                 }
 
                 const now = new Date();
                 const today = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
-                const mealRes = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=S10&SD_SCHUL_CODE=${encodeURIComponent(schoolCode)}&MLSV_YMD=${today}`);
+                const mealRes = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=${encodeURIComponent(office)}&SD_SCHUL_CODE=${encodeURIComponent(schoolCode)}&MLSV_YMD=${today}`);
                 const mealData = await mealRes.json();
                 const rows = mealData?.mealServiceDietInfo?.[1]?.row || [];
 
@@ -1136,7 +1156,7 @@
         }
 
         // =========================================
-        // 6. 전달사항 (XSS 방어 · 학년 전환 꼬임 방지 · 중복 등록 방지)
+        // 6. 전달사항 (기존 학년별 Apps Script 그대로 연동)
         // =========================================
         function filterNotices() {
             const query = document.getElementById('noticeSearch').value.toLowerCase();
@@ -1148,10 +1168,15 @@
         async function fetchNotices() {
             const requestGrade = currentGrade;
             const board = document.getElementById('noticeBoard');
+            const conf = (appConfig.grades && appConfig.grades[requestGrade]) || getCurrentGradeConf();
+            if (!conf || !conf.url) {
+                board.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">학년 Apps Script 주소가 설정되지 않았습니다.</div>';
+                return;
+            }
             try {
-                const res = await fetch(gradeConfig[requestGrade].url + "?t=" + Date.now());
+                const res = await fetch(conf.url + "?t=" + Date.now());
                 const raw = await res.json();
-                if (requestGrade !== currentGrade) return; // 응답 도착 전 학년이 바뀌었으면 무시
+                if (requestGrade !== currentGrade) return;
 
                 const data = Array.isArray(raw) ? raw : (Array.isArray(raw?.items) ? raw.items : []);
                 noticeMap.clear();
@@ -1214,7 +1239,7 @@
             btn.disabled = true;
             btn.textContent = '저장중';
 
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'create', text: val })
             })
@@ -1258,7 +1283,7 @@
             btn.disabled = true;
             btn.textContent = '저장중...';
 
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'update', id: currentEditId, text: val })
             })
@@ -1279,7 +1304,7 @@
 
         function deleteNotice(id) {
             if (!confirm("정말 삭제하시겠습니까?")) return;
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'delete', id: id })
             })
@@ -1376,7 +1401,7 @@
             const wasOn = btn.classList.contains('on');
             btn.classList.toggle('on', !wasOn);
             btn.classList.toggle('off', wasOn);
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'toggleCheck', id: id, classIndex: classIndex })
             }).catch(() => {
@@ -1387,7 +1412,7 @@
         }
 
         function toggleArchive(id) {
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'toggleArchive', id: id })
             })
@@ -1404,8 +1429,13 @@
             const requestGrade = currentGrade;
             const activeList = document.getElementById('activeDdayList');
             const archivedContainer = document.getElementById('archivedDdayContainer');
+            const conf = (appConfig.grades && appConfig.grades[requestGrade]) || getCurrentGradeConf();
+            if (!conf || !conf.url) {
+                activeList.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub);">학년 Apps Script 주소가 설정되지 않았습니다.</div>';
+                return;
+            }
             try {
-                const res = await fetch(gradeConfig[requestGrade].url + "?type=dday&t=" + Date.now());
+                const res = await fetch(conf.url + "?type=dday&t=" + Date.now());
                 const raw = await res.json();
                 if (requestGrade !== currentGrade) return;
 
@@ -1443,7 +1473,7 @@
                 let archiveCount = 0;
                 const daysArr = ['일', '월', '화', '수', '목', '금', '토'];
                 const todayDate = parseLocalDate(getTodayString());
-                const classCount = gradeConfig[requestGrade].classCount;
+                const classCount = Math.max(1, Math.min(20, Number(conf.classCount) || 8));
 
                 parsedItems.forEach(item => {
                     const diff = Math.round((item.targetDate - todayDate) / (1000 * 60 * 60 * 24));
@@ -1608,7 +1638,7 @@
         }
 
         function sendDdayRequest(payload, btn, defaultLabel) {
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify(payload)
             })
@@ -1628,7 +1658,7 @@
 
         function deleteDday(id) {
             if (!confirm("해당 D-Day를 영구 삭제하시겠습니까?")) return;
-            fetch(gradeConfig[currentGrade].url, {
+            fetch(getCurrentGradeConf().url, {
                 method: 'POST', mode: 'no-cors',
                 body: JSON.stringify({ action: 'delete', type: 'dday', id: id })
             })
@@ -1644,14 +1674,12 @@
         // =========================================
         // 8. 초기화 실행
         // =========================================
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             applyTheme(localStorage.getItem('dashboardTheme') || 'dark');
-            applyFont(localStorage.getItem('dashboardFont') || DEFAULT_FONT_KEY);
             buildDdayIconPicker();
 
             const savedMemo = localStorage.getItem('dashboardPrivateMemo');
             if (savedMemo !== null) document.getElementById('privateMemo').value = savedMemo;
-
             document.getElementById('privateMemo').addEventListener('input', (e) => {
                 localStorage.setItem('dashboardPrivateMemo', e.target.value);
             });
@@ -1661,22 +1689,26 @@
                     if (document.getElementById('ddayIconPickerModal').classList.contains('open')) {
                         closeDdayIconPicker(); return;
                     }
-                    if (document.getElementById('fontModal').classList.contains('open')) {
-                        closeFontModal(); return;
-                    }
                     closeEditModal();
                     closeDdayModal();
                 }
             });
 
             renderChecklist();
-            updateTime();
+            applyConfigToUI();
+
+            // 원격 설정 먼저 동기화 후 최신 학년 URL/설정에 맞춰 데이터 로드
+            await loadRemoteConfig();
             fetchWeather();
             fetchLunchMenu();
             changeGrade(currentGrade);
 
             setInterval(updateTime, 1000);
-            setInterval(() => { fetchNotices(); fetchDdays(); }, 5 * 60 * 1000);
+            setInterval(() => {
+                loadRemoteConfig();
+                fetchNotices();
+                fetchDdays();
+            }, 5 * 60 * 1000);
             setInterval(fetchWeather, 30 * 60 * 1000);
         });
     </script>
